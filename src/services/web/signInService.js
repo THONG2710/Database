@@ -3,7 +3,7 @@ const signIn = async (email, password) => {
     try {
       const user = await userModel.findOne({ email: email });
       // console.log(user);
-      if (user && user.password === password) {
+      if (user && user.password === password && user.role == 1) {
         return user;
       }
     } catch (error) {

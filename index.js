@@ -16,6 +16,7 @@ dotenv.config();
 const {
   signInRouter,
   usersRouter,
+  reportRouter,
 
 
 } = require("./src/routes/web/indexRouter");
@@ -51,7 +52,7 @@ app.use(
 app.use(cors());
 
 var url =
-  "mongodb+srv://linh:linh@cluster0.hihepgd.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://linh:linh@cluster0.hihepgd.mongodb.net/SemoApp?retryWrites=true&w=majority";
 // kết nối database
 mongoose
   .connect(url, {
@@ -67,6 +68,7 @@ mongoose
 app.use(
   signInRouter, // http://localhost:3000/signin
   usersRouter, // http://localhost:3000/
+  reportRouter, // http://localhost:3000/report
 );
 
 app.listen(port, hostname, async () => {

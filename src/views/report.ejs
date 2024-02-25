@@ -68,8 +68,9 @@
                 <div class="navbar-nav w-100">
 
 
-                    <a href="/" class="nav-item nav-link active"><i class="fa fa-user me-2"></i>Người dùng</a>
-                    <a href="/report" class="nav-item nav-link"><i class="fa fa-exclamation-triangle"></i> Báo cáo</a>
+                    <a href="/" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người dùng</a>
+                    <a href="/report" class="nav-item nav-link active"><i class="fa fa-exclamation-triangle"></i> Báo
+                        cáo</a>
 
 
 
@@ -189,48 +190,34 @@
                                     <thead>
                                         <tr style="color: #EB1616">
                                             <th scope="col">#</th>
-                                            <th scope="col">Avatar</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Trạng thái</th>
+                                            <th scope="col">ID nhật kí</th>
+                                            <th scope="col">ID người dùng</th>
                                             <th scope="col">Thời gian tạo</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col">Lí do</th>
+                                            <th scope="col">Trạng thái</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        <% users.forEach(function(user,index) { %>
+                                        <% reports.forEach(function(report,index) { %>
                                             <tr>
                                                 <td>
                                                     <%= index+1 %>
                                                 </td>
                                                 <td>
-                                                    <img src="<%= user.avatar %>" alt="" height="100">
+                                                    <%= report.id_diary %>
                                                 </td>
                                                 <td>
-                                                    <%= user.username %>
+                                                    <%= report.id_user %>
                                                 </td>
                                                 <td>
-                                                    <%= user.email %>
+                                                    <%= report.time_created %>
                                                 </td>
                                                 <td>
-                                                    <%= user.isLooked %>
+                                                    <%= report.reason %>
                                                 </td>
                                                 <td>
-                                                    <%= user.time_created %>
-                                                </td>
-                                                <td>
-                                                    <a href="userdetail/<%=user._id%>">
-                                                        <button type="button" class="btn btn-primary m-2"
-                                                            style="width: 40px; height: 40px;">
-                                                            <i class="fa fa-edit me-2"></i>
-                                                        </button>
-                                                    </a>
-
-                                                    <button type="button" id="del" class="btn btn-primary m-2"
-                                                        style="width: 40px; height: 40px;" <i
-                                                        class="fa fa-trash me-2"></i>
-                                                    </button>
+                                                    <%= report.status %>
                                                 </td>
                                             </tr>
                                             <% }) %>
