@@ -11,6 +11,7 @@ const cors = require("cors");
 dotenv.config();
 
 // dành cho api
+const userApi = require('./src/routes/api/userApi')
 
 // dành cho cpnel
 const {
@@ -22,8 +23,6 @@ const {
 } = require("./src/routes/web/indexRouter");
 
 var app = express();
-
-
 
 // view engine setup
 app.set("views", path.join("./src", "views"));
@@ -63,6 +62,7 @@ mongoose
   .catch((err) => console.log(">>>>>>>>> DB Error: ", err));
 
 // dành cho api
+app.use("/api/users", userApi)
 
 // dành cho cpnel
 app.use(

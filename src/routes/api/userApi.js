@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const userController = require("../../controller/userController");
+const userController = require("../../controllers/app/userController");
 
 // http://localhost:3000/api/users/getAllUsers
 // lấy tất cả user

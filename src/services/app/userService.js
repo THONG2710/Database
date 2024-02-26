@@ -1,4 +1,4 @@
-const userModel = require("../model/userModel");
+const userModel = require("../../models/UserModel");
 const urlAvatarDefault = "https://icons.iconarchive.com/icons/papirus-team/papirus-status/256/avatar-default-icon.png";
 
 // lất tất cả danh sách người dùng
