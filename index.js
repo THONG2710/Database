@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 var url =
-  "mongodb+srv://thong:1@cluster0.hihepgd.mongodb.net/SemoDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://thong:1@cluster0.hihepgd.mongodb.net/SemoApp?retryWrites=true&w=majority";
 // kết nối database
 mongoose
   .connect(url, {

@@ -33,4 +33,24 @@ router.post("/loginWithPhoneNumber", async (req, res, next) => {
   }
 });
 
+// đăng kí tài khoản bằng số điện thoại
+// http://localhost:3000/api/users/signUpWithPhoneNumber
+router.post("/signUpWithPhoneNumber", async (req, res, next) => {
+  try {
+    const { phoneNumber, password } = req.body;
+    const user = await userController.signUpWithPhoneNumberController(
+      phoneNumber,
+      password
+    );
+    if (user) {
+      return res.status(200).json({ result: true, user: user });
+    }
+    return res.status(500).json({ result: false, user: null });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ result: false, user: null, error: error.message });
+  }
+});
+
 module.exports = router;
