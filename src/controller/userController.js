@@ -9,4 +9,11 @@ const getAllUsersController = async () => {
   }
 };
 
-module.exports = { getAllUsersController };
+const loginWithPhoneNumberController = async (phoneNumber, password) => {
+  try {
+    return await userService.loginWithPhoneNumber(phoneNumber, password);
+  } catch (error) {
+    return null;
+  }
+};
+module.exports = { getAllUsersController, loginWithPhoneNumberController };

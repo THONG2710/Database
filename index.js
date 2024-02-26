@@ -27,6 +27,15 @@ app.use(
 );
 
 app.use(cors());
+// view engine setup
+app.set("views", path.join("./src", "views"));
+app.set("view engine", "ejs");
+app.use(express.static(path.join("./src", "public")));
+
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 var url =
   "mongodb+srv://thong:1@cluster0.hihepgd.mongodb.net/SemoDatabase?retryWrites=true&w=majority";
