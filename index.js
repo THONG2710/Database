@@ -18,8 +18,6 @@ const {
   signInRouter,
   usersRouter,
   reportRouter,
-
-
 } = require("./src/routes/web/indexRouter");
 
 var app = express();
@@ -51,7 +49,7 @@ app.use(
 app.use(cors());
 
 var url =
-  "mongodb+srv://linh:linh@cluster0.hihepgd.mongodb.net/SemoApp?retryWrites=true&w=majority";
+  "mongodb+srv://thong:`1`@cluster0.hihepgd.mongodb.net/SemoApp?retryWrites=true&w=majority";
 // kết nối database
 mongoose
   .connect(url, {
@@ -59,7 +57,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("Đã kết nối với database"))
-  .catch((err) => console.log(">>>>>>>>> DB Error: ", err));
+  .catch((err) => console.log(">>>>>>>>> DB Error: ", err.message));
 
 // dành cho api
 app.use("/api/users", userApi)
