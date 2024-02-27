@@ -49,7 +49,7 @@ app.use(
 app.use(cors());
 
 var url =
-  "mongodb+srv://thong:`1`@cluster0.hihepgd.mongodb.net/SemoApp?retryWrites=true&w=majority";
+  "mongodb+srv://thong:1@cluster0.hihepgd.mongodb.net/SemoApp?retryWrites=true&w=majority";
 // kết nối database
 mongoose
   .connect(url, {
