@@ -68,11 +68,10 @@
                 <div class="navbar-nav w-100">
 
 
-                    <a href="/" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người dùng</a>
-                    <a href="/report" class="nav-item nav-link active"><i class="fa fa-exclamation-triangle"></i> Báo
-                        cáo</a>
-
-
+                    <a href="/" class="nav-item nav-link "><i class="fa fa-user me-2"></i>Người dùng</a>
+                    <a href="/diary" class="nav-item nav-link"><i class="fa fa-book"></i> Nhật kí</a>
+                    <a href="/moment" class="nav-item nav-link active"><i class="fa fa-book"></i> Khoảng khắc</a>
+                    <a href="/report" class="nav-item nav-link"><i class="fa fa-exclamation-triangle"></i> Báo cáo</a>
 
 
                 </div>
@@ -184,41 +183,53 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Người dùng</h6>
+                            <h6 class="mb-4">Báo cáo</h6>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr style="color: #EB1616">
                                             <th scope="col">#</th>
-                                            <th scope="col">ID nhật kí</th>
-                                            <th scope="col">ID người dùng</th>
+                                            <th scope="col">Ảnh</th>
+                                            <th scope="col">Người dùng</th>
                                             <th scope="col">Thời gian tạo</th>
-                                            <th scope="col">Lí do</th>
-                                            <th scope="col">Trạng thái</th>
+                                            <th scope="col">Tiêu đề</th>
+                                            <th scope="col">Bình luận</th>
+                                            <th scope="col">Like</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        <% reports.forEach(function(report,index) { %>
+                                        <% moments.forEach(function(moment,index) { %>
                                             <tr>
                                                 <td>
                                                     <%= index+1 %>
                                                 </td>
                                                 <td>
-                                                    <%= report.id_diary %>
+                                                    <img src="<%= moment.image %>" alt="" height="100">
                                                 </td>
                                                 <td>
-                                                    <%= report.id_user %>
+                                                    <%= moment.username %>
                                                 </td>
                                                 <td>
-                                                    <%= report.time_created %>
+                                                    <%= moment.time_created %>
                                                 </td>
                                                 <td>
-                                                    <%= report.reason %>
+                                                    <%= moment.caption %>
                                                 </td>
                                                 <td>
-                                                    <%= report.status %>
+                                                    <%= moment.comments %>
                                                 </td>
+                                                <td>
+                                                    <%= moment.liked %>
+                                                </td>
+                                                <!-- <td>
+                                                    <a href="reportdetail/<%=moment._id%>">
+                                                        <button type="button" class="btn btn-primary m-2"
+                                                            style="width: 40px; height: 40px;">
+                                                            <i class="fa fa-edit me-2"></i>
+                                                        </button>
+                                                    </a>
+                                                </td> -->
                                             </tr>
                                             <% }) %>
 

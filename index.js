@@ -17,7 +17,8 @@ const {
   signInRouter,
   usersRouter,
   reportRouter,
-
+  diaryRouter,
+  momentRouter,
 
 } = require("./src/routes/web/indexRouter");
 
@@ -69,6 +70,8 @@ app.use(
   signInRouter, // http://localhost:3000/signin
   usersRouter, // http://localhost:3000/
   reportRouter, // http://localhost:3000/report
+  diaryRouter, // http://localhost:3000/diary
+  momentRouter, // http://localhost:3000/moment
 );
 
 app.listen(port, hostname, async () => {

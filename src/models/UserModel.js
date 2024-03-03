@@ -8,10 +8,11 @@ const userSchema = new Schema({
   username: { type: String },
   password: { type: String },
   email: { type: String },
+  phonenumber : { type: String },
   friend: { type: Array },
   role: { type: String },
-  isLooked: { type: Boolean },
-  time_created: { type: String },
+  available: { type: Boolean },
+  createdat: { type: String },
   friend_request: { type: Array },
   request_to_be_friend: { type: Array },
 });

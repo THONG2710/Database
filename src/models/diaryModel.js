@@ -4,12 +4,13 @@ const ObjectId = Schema.ObjectId;
 
 const diarySchema = new Schema({
   _id: { type: ObjectId },
-  id_user: { type: ObjectId },
+  userid: { type: ObjectId },
+  diary: { type: String },
   detail: { type: String },
   content: { type: String },
   title: { type: String },
   layout: { type: Array },
-  time_created: { type: String },
+  createdat: { type: String },
   privacy: { type: Boolean },
   report: { type: Boolean },
 });
