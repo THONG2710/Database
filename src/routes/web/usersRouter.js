@@ -16,7 +16,7 @@ router.get("/userdetail/:id", [], async (req, res) => {
     
     // console.log(user);
     console.log(diaries);
-    res.render("user/userdetail.ejs", { user , diaries, moments});
+    res.render("user/userdetail.ejs", { user, diaries, moments });
   } catch (error) {
     return error;
   }
@@ -31,6 +31,5 @@ router.post("/banuser/:id", [], async (req, res) => {
     return error;
   }
 });
-
 
 module.exports = router;
