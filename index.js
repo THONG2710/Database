@@ -12,7 +12,9 @@ dotenv.config();
 
 // dành cho api
 const userApi = require('./src/routes/api/userApi')
-
+const diaryApi = require('./src/routes/api/diaryApi');
+const momentApi = require('./src/routes/api/momentApi');
+const friendApi = require('./src/routes/api/friendApi');
 // dành cho cpnel
 const {
   signInRouter,
@@ -60,8 +62,10 @@ mongoose
   .catch((err) => console.log(">>>>>>>>> DB Error: ", err.message));
 
 // dành cho api
-app.use("/api/users", userApi)
-
+app.use("/api/users", userApi);
+app.use("/api/diary", diaryApi);
+app.use("/api/moment", momentApi);
+app.use("/api/friend", friendApi);
 // dành cho cpnel
 app.use(
   signInRouter, // http://localhost:3000/signin
