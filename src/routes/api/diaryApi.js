@@ -45,6 +45,26 @@ router.get("/getDiariesMyFriends", async (req, res, next) => {
   } catch (error) {
     return res.status(400).json({ result: false, error: error.message });
   }
-})
+});
+
+// tạo một bài nhật kí
+// http://localhost:3000/api/diary/createDiary
+router.post("/createDiary", async (req, res, next) => {
+  try {
+    const { userid, diary, createdat, privacy } = req.body;
+    const createDiary = await diaryController.createDiaryController(
+      userid,
+      diary,
+      createdat,
+      privacy
+    );
+    if (createDiary) {
+      return res.status(200).json({ result: true, diary: createDiary });
+    }
+    return res.status(500).json({ result: false, diary: null });
+  } catch (error) {
+    return res.status(400).json({ result: false, diary: null });
+  }
+});
 
 module.exports = router;

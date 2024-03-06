@@ -17,11 +17,25 @@ const loginWithPhoneNumberController = async (phoneNumber, password) => {
   }
 };
 
-const signUpWithPhoneNumberController = async (phoneNumber, password) => { 
+const signUpWithPhoneNumberController = async (phoneNumber, password) => {
   try {
     return await userService.signUpWithPhoneNumber(phoneNumber, password);
   } catch (error) {
     return null;
   }
 };
-module.exports = { getAllUsersController, loginWithPhoneNumberController,signUpWithPhoneNumberController };
+
+const getUserByIdController = async (id) => {
+  try {
+    return await userService.getUserById(id);
+  } catch (error) {
+    return null;
+  }
+};
+
+module.exports = {
+  getAllUsersController,
+  loginWithPhoneNumberController,
+  signUpWithPhoneNumberController,
+  getUserByIdController,
+};

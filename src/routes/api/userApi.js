@@ -53,4 +53,19 @@ router.post("/signUpWithPhoneNumber", async (req, res, next) => {
   }
 });
 
+// đăng kí tài khoản bằng số điện thoại
+// http://localhost:3000/api/users/getUserById?id=
+router.get("/getUserById", async (req, res, next) => {
+  try {
+    const { id } = req.query;
+    const user = await userController.getUserByIdController(id);
+    if (user) {
+      return res.status(200).json({ result: true, user: user });
+    }
+    return res.status(500).json({ result: true, user: null });
+  } catch (error) {
+    return res.status(500).json({ result: false, user: null });
+  }
+});
+
 module.exports = router;

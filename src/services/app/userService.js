@@ -14,7 +14,7 @@ const getAllUsers = async () => {
 // đăng nhập
 const loginWithPhoneNumber = async (phoneNumber, password) => {
   try {
-    const user = await userModel.findOne({ phoneNumber: phoneNumber });
+    const user = await userModel.findOne({ phonenumber: phoneNumber });
     if (user && user.password === password) {
       return user;
     }
@@ -28,10 +28,10 @@ const loginWithPhoneNumber = async (phoneNumber, password) => {
 // đăng kí tài khoản bằng số điện thoại
 const signUpWithPhoneNumber = async (phoneNumber, password) => {
   try {
-    const isAvailable = await userModel.findOne({ phoneNumber: phoneNumber }).exec();
+    const isAvailable = await userModel.findOne({ phonenumber: phoneNumber }).exec();
     if (isAvailable) {
       console.log(phoneNumber + " already exists!!");
-      return false;
+      return null;
     } else {
       const user = {
         userName: "",
@@ -51,4 +51,18 @@ const signUpWithPhoneNumber = async (phoneNumber, password) => {
   }
 };
 
-module.exports = { getAllUsers, loginWithPhoneNumber, signUpWithPhoneNumber };
+// lấy thông tin người dung theo id
+const getUserById = async (id ) => {
+  try {
+    const user = await userModel.findById(id);
+    if (user) {
+      return user;
+    }
+    return null;
+  } catch (error) {
+    console.log("get user by id failled: " + error.message);
+    return null;
+  }
+}
+
+module.exports = { getAllUsers, loginWithPhoneNumber, signUpWithPhoneNumber, getUserById };
