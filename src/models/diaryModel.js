@@ -13,6 +13,7 @@ const diarySchema = new Schema({
   createdat: { type: String },
   privacy: { type: Boolean },
   report: { type: Boolean },
+  username: { type: String},
 });
 
 module.exports = mongoose.model("diaries", diarySchema);
