@@ -32,19 +32,21 @@ const getDiariesByIdUser = async (idUser) => {
 const getDiariesMyFriends = async (idUser) => {
   try {
     const friends = await friendModel
-      .find({ userid: idUser, status: true })
+      .find({ userid: idUser, status: 3 })
       .exec();
     const listDiariesMyFriends = [];
-    const myDiary = await diaryModel.find({ userid: idUser }).exec();
-    // listDiariesMyFriends = [...myDiary];
-    // console.log(listDiariesMyFriends);
-    listDiariesMyFriends.push(...myDiary);
     for (const friend of friends) {
       const id = friend.friendid;
-      const diaries = await diaryModel.find({ userid: id }).exec();
+      const diaries = await diaryModel
+        .find({
+          $and: [{ userid: id }, { $or: [{ privacy: 2 }, { privacy: 3 }] }],
+        })
+        .exec();
       listDiariesMyFriends.push(...diaries);
     }
-    const sortListDiariesMyFriends = listDiariesMyFriends.sort((a, b) => b.createdat - a.createdat)
+    const sortListDiariesMyFriends = listDiariesMyFriends.sort(
+      (a, b) => b.createdat - a.createdat
+    );
     if (sortListDiariesMyFriends.length > 0) {
       return sortListDiariesMyFriends;
     }

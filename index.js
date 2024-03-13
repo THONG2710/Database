@@ -11,10 +11,12 @@ const cors = require("cors");
 dotenv.config();
 
 // dành cho api
-const userApi = require('./src/routes/api/userApi')
-const diaryApi = require('./src/routes/api/diaryApi');
-const momentApi = require('./src/routes/api/momentApi');
-const friendApi = require('./src/routes/api/friendApi');
+const userApi = require("./src/routes/api/userApi");
+const diaryApi = require("./src/routes/api/diaryApi");
+const momentApi = require("./src/routes/api/momentApi");
+const friendApi = require("./src/routes/api/friendApi");
+const chatMessageApi = require("./src/routes/api/chatMessageApi");
+const toDoApi = require("./src/routes/api/toDoApi");
 // dành cho cpnel
 const {
   signInRouter,
@@ -36,7 +38,7 @@ app.use(cookieParser());
 
 const port = process.env.PORT ?? 8888;
 const hostname = process.env.HOSTNAME ?? "localhost";
-const secret = process.env.SECRET ?? "secret"; 
+const secret = process.env.SECRET ?? "secret";
 
 app.use(
   session({
@@ -45,7 +47,6 @@ app.use(
     saveUninitialized: true,
     cookie: { secure: false },
   })
- 
 );
 
 app.use(cors());
@@ -61,18 +62,35 @@ mongoose
   .then(() => console.log("Đã kết nối với database"))
   .catch((err) => console.log(">>>>>>>>> DB Error: ", err.message));
 
+const chat = async () => {
+  const client = new MongoClient(url);
+
+  await client.connect();
+
+  const collection = client.db("SemoApp").collection("chatmessages");
+
+  const changeStream = collection.watch();
+
+  changeStream.on("change", (change) => {
+    console.log("Thay đổi:", change.documentKey);
+  });
+};
+
 // dành cho api
 app.use("/api/users", userApi);
 app.use("/api/diary", diaryApi);
 app.use("/api/moment", momentApi);
 app.use("/api/friend", friendApi);
+app.use("/api/chatMessage", chatMessageApi);
+app.use("/api/todolist", toDoApi);
 // dành cho cpnel
 app.use(
   signInRouter, // http://localhost:3000/signin
   usersRouter, // http://localhost:3000/
-  reportRouter, // http://localhost:3000/report
+  reportRouter // http://localhost:3000/report
 );
 
 app.listen(port, hostname, async () => {
+  chat();
   console.log(`Server is running on port ${port} ${hostname}`);
 });

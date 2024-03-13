@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const friendSchema = new Schema({
-    _id: { type: ObjectId },
+    id: { type: ObjectId },
     userid: { type: ObjectId },
     friendid: { type: ObjectId },
-    requestedAt: { type: String },
-    status: { type: Boolean },
+    requestedat: { type: String },
+    status: { type: Number },
   });
   
   module.exports = mongoose.model("friend", friendSchema);
