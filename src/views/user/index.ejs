@@ -221,7 +221,7 @@
                                                     <%= user.available ? " Bình thường" :"Bị chặn"%>
                                                 </td>
                                                 <td>
-                                                    <%= new Date(user.createdat).toLocaleString() %>
+                                                    <%= user.createdat %>
                                                 </td>
                                                 <td>
                                                     <a href="userdetail/<%=user._id%>">
@@ -242,7 +242,6 @@
                 </div>
             </div>
             <!-- Table End -->
-
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">

@@ -9,7 +9,7 @@ const reportSchema = new Schema({
   userid: { type: String },
   createdat: { type: String },
   reason: { type: String },
-  status: { type: String },
+  status: { type: Boolean},
 });
 
 module.exports = mongoose.model("reports", reportSchema);

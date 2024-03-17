@@ -4,13 +4,14 @@ const ObjectId = Schema.ObjectId;
 
 const momentScheme = new Schema({
   _id: { type: ObjectId },
-  id_user: { type: ObjectId },
+  userid: { type: ObjectId },
   username: { type: String },
   image: { type: String },
+  content: { type: String },
   caption: { type: String },
   comments: { type: Array },
   video: { type: Array },
-  time_created: { type: String },
+  createdat: { type: String },
   liked: { type: String },
 });
 

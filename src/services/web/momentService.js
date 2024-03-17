@@ -1,10 +1,19 @@
 const momentModel = require("../../models/momentModel");
+const userModel = require("../../models/userModel");
 
 const getAllMoment = async () => {
-    try {
-      return await momentModel.find();
-    } catch (error) {
-      return error;
+  try {
+    const momments = await momentModel.find().sort({ createdat: -1 });
+    for (const momment of momments) {
+      const userid = momment.get("userid");
+      if (userid) {
+        const user = await userModel.findById(userid);
+        momment.username = user?.username;
+      }
     }
-  };
-  module.exports = { getAllMoment };
+    return momments;
+  } catch (error) {
+    return error;
+  }
+};
+module.exports = { getAllMoment };

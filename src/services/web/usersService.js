@@ -5,7 +5,7 @@ const momentModel = require("../../models/momentModel");
 // getAllUsers
 const getAllUsers = async () => {
   try {
-    return await userModel.find();
+    return await userModel.find().sort({ createdat: -1 });
   } catch (error) {
     return error;
   }
@@ -44,7 +44,7 @@ const getDiariesByUserId = async (id) => {
 // get moments by user id
 const getMomentsByUserId = async (id) => {
   try {
-    return await momentModel.find({ id_user: id });
+    return await momentModel.find({ userid: id });
   } catch (error) {
     return error;
   }
