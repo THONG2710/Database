@@ -5,7 +5,7 @@ const getChatMessageById = async (id) => {
   try {
     const messages = await chatmessageModel
       .find({ $or: [{ sender: id }, { receiver: id }] })
-      .sort({createdat: 1})
+      .sort({ createdat: 1 })
       .exec();
     if (messages) {
       return messages;
@@ -16,4 +16,24 @@ const getChatMessageById = async (id) => {
   }
 };
 
-module.exports = { getChatMessageById };
+// gửi tin nhắn
+const senMessage = async (receiver, content, createdat, sender, seen) => {
+  try {
+    const message = {
+      receiver: receiver,
+      content: content,
+      createdat: createdat,
+      sender: sender,
+      seen: seen,
+    };
+    const newMessage = new chatmessageModel(message);
+    const res = await newMessage.save();
+    if (res) {
+      return res;
+    }
+  } catch (error) {
+    console.log("failed to save message: " + error.message);
+  }
+};
+
+module.exports = { getChatMessageById, senMessage };
