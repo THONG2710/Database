@@ -19,9 +19,9 @@ const getMomentByIdController = async (id) => {
 };
 
 // tạo khoảnh khắc mới
-const createMomentController = async (userid, createdat, content, caption, description) => {
+const createMomentController = async (userid, createdat, content, caption, description, isimage) => {
     try {
-        return await momentService.createMoment(userid, createdat, content, caption, description);
+        return await momentService.createMoment(userid, createdat, content, caption, description, isimage);
     } catch (error) {
         return null;
     }

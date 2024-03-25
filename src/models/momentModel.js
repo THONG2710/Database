@@ -9,6 +9,7 @@ const momentScheme = new Schema({
   caption: { type: String },
   createdat: { type: Number },
   description: { type: String },
+  isimage: {type: Boolean}
 });
 
 module.exports = mongoose.model("moments", momentScheme);

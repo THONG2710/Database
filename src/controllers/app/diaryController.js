@@ -37,9 +37,20 @@ const createDiaryController = async (idUser, diary, createdat, privacy) => {
   }
 };
 
+// xóa một bài nhật kí
+const deleteDiaryController = async (id) => {
+  try {
+    return await diaryService.deleteDiary(id);
+  } catch (error) {
+    return null;
+  }
+}; 
+
+
 module.exports = {
   getAllDiariesController,
   getDiariesByIdUserController,
   getDiarisMyFriendsController,
   createDiaryController,
+  deleteDiaryController
 };

@@ -30,14 +30,15 @@ const getMomentById = async (id) => {
 };
 
 // đăng khoảnh khắc
-const createMoment = async (userid, createdat, content, caption, description) => {
+const createMoment = async (userid, createdat, content, caption, description, isimage) => {
   try {
     const moment = {
       userid: userid,
       createdat: createdat,
       content: content,
       caption: caption,
-      description: description
+      description: description,
+      isimage: isimage,
     };
     const newMoment = new momentModel(moment);
     const create = await newMoment.save();
@@ -76,7 +77,6 @@ const getFriendsMoment = async (id) => {
           .exec();
         friendsMoments.push(...moment);
       }
-      console.log(friendsMoments);
       return friendsMoments;
     }
     return null;

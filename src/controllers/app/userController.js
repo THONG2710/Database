@@ -33,9 +33,45 @@ const getUserByIdController = async (id) => {
   }
 };
 
+// cập nhật thông tin tài khoản
+const updateUser = async (id, username, email, avatar, phonenumber) => {
+  try {
+    return await userService.updateUser(
+      id,
+      username,
+      email,
+      avatar,
+      phonenumber
+    );
+  } catch (error) {
+    return null;
+  }
+};
+
+// tìm kiếm người dùng bằng tên
+const findUserByNameController = async (name, id) => {
+  try {
+    return await userService.findUserByName(name, id);
+  } catch (error) {
+    return null;
+  }
+};
+
+// tìm kiếm người dùng bằng số điện thoại
+const findUserByPhoneNumberController = async (phoneNumber, id) => {
+  try {
+    return await userService.findUserByPhoneNumber(phoneNumber, id);
+  } catch (error) {
+    return null;
+  }
+};
+
 module.exports = {
   getAllUsersController,
   loginWithPhoneNumberController,
   signUpWithPhoneNumberController,
   getUserByIdController,
+  updateUser,
+  findUserByNameController,
+  findUserByPhoneNumberController
 };

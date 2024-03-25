@@ -17,6 +17,9 @@ const momentApi = require("./src/routes/api/momentApi");
 const friendApi = require("./src/routes/api/friendApi");
 const chatMessageApi = require("./src/routes/api/chatMessageApi");
 const toDoApi = require("./src/routes/api/toDoApi");
+const todoItemApi = require("./src/routes/api/todoItemApi");
+const commentApi = require("./src/routes/api/commentApi");
+const likesApi = require("./src/routes/api/likeApi");
 // dành cho cpnel
 const {
   signInRouter,
@@ -83,6 +86,9 @@ app.use("/api/moment", momentApi);
 app.use("/api/friend", friendApi);
 app.use("/api/chatMessage", chatMessageApi);
 app.use("/api/todolist", toDoApi);
+app.use("/api/itemTodo", todoItemApi);
+app.use("/api/comments", commentApi);
+app.use("/api/likes", likesApi);
 // dành cho cpnel
 app.use(
   signInRouter, // http://localhost:3000/signin

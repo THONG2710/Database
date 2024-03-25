@@ -67,4 +67,19 @@ router.post("/createDiary", async (req, res, next) => {
   }
 });
 
+// xóa một bài nhật kí
+// http://localhost:3000/api/diary/deleteDiary/
+router.post("/deleteDiary/:_id", async (req, res, next) => {
+  try {
+    const { _id } = req.params;
+    const deleteDiary = await diaryController.deleteDiaryController(_id);
+    if (deleteDiary) {
+      return res.status(200).json({ result: true, diary: deleteDiary });
+    }
+    return res.status(500).json({ result: false, diary: null });
+  } catch (error) {
+    return res.status(400).json({ result: false, diary: null });
+  }
+});
+
 module.exports = router;

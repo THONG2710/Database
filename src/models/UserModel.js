@@ -4,12 +4,12 @@ const ObjectId = mongoose.ObjectId;
 
 const userSchema = new Schema({
   id: { type: ObjectId },
-  userName: { type: String },
+  username: { type: String },
   password: { type: String },
-  Email: { type: String },
-  Available: { type: Boolean },
-  Avatar: { type: String },
-  phoneNumber: { type: String },
+  email: { type: String },
+  available: { type: Boolean },
+  avatar: { type: String },
+  phonenumber: { type: String },
   createdAt: { type: Number },
 });
 

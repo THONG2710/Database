@@ -62,7 +62,52 @@ router.get("/getUserById", async (req, res, next) => {
     if (user) {
       return res.status(200).json({ result: true, user: user });
     }
-    return res.status(500).json({ result: true, user: null });
+    return res.status(500).json({ result: false, user: null });
+  } catch (error) {
+    return res.status(500).json({ result: false, user: null });
+  }
+});
+
+// cập nhật thông tin toàn khoản
+// http://localhost:3000/api/users/updateUser
+router.post("/updateUser", async (req, res, next) => {
+  try {
+    const { id, username, email, avatar, phonenumber } = req.body;
+    const user = await userController.updateUser(id, username, email, avatar, phonenumber);
+    if (user) {
+      return res.status(200).json({ result: true, user: user });
+    }
+    return res.status(500).json({ result: false, user: null });
+  } catch (error) {
+    return res.status(500).json({ result: false, user: null });
+  }
+});
+
+// tìm kiếm người dùng bằng tên
+// http://localhost:3000/api/users/findUserByName?name=&id=
+router.get("/findUserByName", async (req, res, next) => {
+  try {
+    const { name, id } = req.query;
+    const user = await userController.findUserByNameController(name, id);
+    if (user) {
+      return res.status(200).json({ result: true, user: user });
+    }
+    return res.status(500).json({ result: false, user: null });
+  } catch (error) {
+    return res.status(500).json({ result: false, user: null });
+  }
+});
+
+// tìm kiếm người dùng bằng số điện thoại
+// http://localhost:3000/api/users/findUserByPhoneNumber?phoneNumber=&id=
+router.get("/findUserByPhoneNumber", async (req, res, next) => {
+  try {
+    const { phoneNumber, id } = req.query;
+    const user = await userController.findUserByPhoneNumberController(phoneNumber, id);
+    if (user) {
+      return res.status(200).json({ result: true, user: user });
+    }
+    return res.status(500).json({ result: false, user: null });
   } catch (error) {
     return res.status(500).json({ result: false, user: null });
   }

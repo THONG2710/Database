@@ -35,13 +35,15 @@ router.get("/getMomentsById", async (req, res, next) => {
 // http://localhost:3000/api/moment/createMoment
 router.post("/createMoment", async (req, res, next) => {
   try {
-    const { userid, createdat, content, caption, description } = req.body;
+    const { userid, createdat, content, caption, description, isimage } =
+      req.body;
     const moment = await momentController.createMomentController(
       userid,
       createdat,
       content,
       caption,
-      description
+      description,
+      isimage
     );
     if (moment) {
       return res.status(200).json({ result: true, moment: moment });

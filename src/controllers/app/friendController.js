@@ -81,6 +81,15 @@ const AcceptRequestController = async (id) => {
   }
 }  
 
+// tìm yêu cầu kết bạn 
+const findFriendRequestController = async (myId, friendId) => {
+  try {
+    return await friendService.findFriendsRequest(myId, friendId);
+  } catch (error) {
+    return null;
+  }
+}  
+
 module.exports = {
   getAllFriendController,
   getFriendsById,
@@ -90,5 +99,6 @@ module.exports = {
   addFriendController,
   onCancelRequestController,
   getUsersRequestController,
-  AcceptRequestController
+  AcceptRequestController,
+  findFriendRequestController
 };

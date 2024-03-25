@@ -76,9 +76,23 @@ const createDiary = async (idUser, diary, createdat, privacy) => {
   }
 };
 
+// xóa một bài nhật kí
+const deleteDiary = async (id) => {
+  try {
+    const res = await diaryModel.deleteOne({_id: id});
+    if (res) {
+      return res;
+    }
+    return false;
+  } catch (error) {
+    console.log("delete diary failled: " + error.message);
+  }
+}
+
 module.exports = {
   getAllDiaries,
   getDiariesByIdUser,
   getDiariesMyFriends,
   createDiary,
+  deleteDiary
 };
