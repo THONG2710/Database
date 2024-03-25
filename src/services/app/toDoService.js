@@ -66,9 +66,10 @@ const getTodolistById = async (userid, createdat) => {
     nextDate.setDate(nextDate.getDate() + 1);
     const previous = previousDate.getTime() / 1000;
     const next = nextDate.getTime() / 1000;
-    const todo = await toDoModel
-      .findOne({ userid: userid, createdat: { $gte: previous, $lte: next } })
-      .exec();
+    const todo = await toDoModel.findOne({
+      userid: userid,
+      createdat: { $gte: previous, $lte: next },
+    });
     console.log(userid, previous, createdat, next, todo);
     if (todo) {
       const unfinishedWork = await toDoItemModel
