@@ -5,7 +5,7 @@ const momentModel = require("../../models/momentModel");
 // getAllUsers
 const getAllUsers = async () => {
   try {
-    return await userModel.find();
+    return await userModel.find().sort({ createdat: -1 });
   } catch (error) {
     return error;
   }
@@ -26,7 +26,7 @@ const banUser = async (id) => {
   try {
     const user = await userModel.findById(id);
     if (user) {
-      user.isLooked = !user.isLooked;
+      user.available = !user.available;
     }
     return await user.save();
   } catch (error) {
@@ -36,21 +36,19 @@ const banUser = async (id) => {
 // get diaries by user id
 const getDiariesByUserId = async (id) => {
   try {
-    return await diaryModel.find({ id_user: id });
-  }
-  catch (error) {
+    return await diaryModel.find({ userid: id });
+  } catch (error) {
     return error;
   }
-}
+};
 // get moments by user id
 const getMomentsByUserId = async (id) => {
   try {
-    return await momentModel.find({ id_user: id });
-  }
-  catch (error) {
+    return await momentModel.find({ userid: id });
+  } catch (error) {
     return error;
   }
-}
+};
 module.exports = {
   getAllUsers,
   getUserById,

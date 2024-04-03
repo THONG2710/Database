@@ -61,16 +61,18 @@
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Linh Tùng</h6>
+                        <h5 class="mb-0 " style="color: black;">Linh Tùng</h5>
                         <span>Admin</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
 
 
-                    <a href="/" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Người dùng</a>
-                    <a href="/report" class="nav-item nav-link active"><i class="fa fa-exclamation-triangle"></i> Báo
-                        cáo</a>
+
+                    <a href="/" class="nav-item nav-link "><i class="fa fa-user me-2"></i>Người dùng</a>
+                    <a href="/diary" class="nav-item nav-link active"><i class="fa fa-book"></i> Nhật kí</a>
+                    <a href="/moment" class="nav-item nav-link"><i class="fa fa-book"></i> Khoảnh khắc</a>
+                    <a href="/report" class="nav-item nav-link"><i class="fa fa-exclamation-triangle"></i> Báo cáo</a>
 
 
 
@@ -184,41 +186,47 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Người dùng</h6>
+                            <h6 class="mb-4">Nhật kí</h6>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr style="color: #EB1616">
                                             <th scope="col">#</th>
-                                            <th scope="col">ID nhật kí</th>
-                                            <th scope="col">ID người dùng</th>
+                                            <th scope="col">Người dùng</th>
+                                            <th scope="col">Nhật kí</th>
                                             <th scope="col">Thời gian tạo</th>
-                                            <th scope="col">Lí do</th>
-                                            <th scope="col">Trạng thái</th>
+                                            <th scope="col">Riêng tư</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        <% reports.forEach(function(report,index) { %>
+                                        <% diaries.forEach(function(diary,index) { %>
                                             <tr>
                                                 <td>
                                                     <%= index+1 %>
                                                 </td>
                                                 <td>
-                                                    <%= report.id_diary %>
+                                                    <%= diary.username %>
                                                 </td>
                                                 <td>
-                                                    <%= report.id_user %>
+                                                    <img src=" <%= diary.diary %>" height="100">
                                                 </td>
                                                 <td>
-                                                    <%= report.time_created %>
+                                                    <%= diary.createdat %>
                                                 </td>
                                                 <td>
-                                                    <%= report.reason %>
+                                                    <%= diary.privacy ? "Riêng tư" :" Công khai"%>
                                                 </td>
-                                                <td>
-                                                    <%= report.status %>
-                                                </td>
+
+                                                <!-- <td>
+                                                    <a href="reportdetail/<%=diary._id%>">
+                                                        <button type="button" class="btn btn-primary m-2"
+                                                            style="width: 40px; height: 40px;">
+                                                            <i class="fa fa-edit me-2"></i>
+                                                        </button>
+                                                    </a>
+                                                </td> -->
                                             </tr>
                                             <% }) %>
 

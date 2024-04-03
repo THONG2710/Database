@@ -71,9 +71,10 @@
     width: 250px;
     height: 100vh;
     overflow-y: auto;
-    background: var(--secondary);
+    background: #ACCDF9;
     transition: 0.5s;
     z-index: 999;
+    color: #000000;
 }
 
 .content {
@@ -286,4 +287,12 @@
 .testimonial-carousel .owl-dot.active {
     background: var(--dark);
     border-color: var(--primary);
+}
+
+.bg-secondary {
+    background-color: #ACCDF9 !important
+}
+
+.table {
+    color: black !important
 }
