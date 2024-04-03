@@ -15,7 +15,8 @@ const sendMessageController = async (
   content,
   createdat,
   sender,
-  seen
+  seen,
+  isimage
 ) => {
   try {
     return await chatMessageService.senMessage(
@@ -23,11 +24,25 @@ const sendMessageController = async (
       content,
       createdat,
       sender,
-      seen
+      seen,
+      isimage
     );
   } catch (error) {
     return null;
   }
 };
 
-module.exports = { getMessageByIdController, sendMessageController };
+//  lấy tin nhắn mới nhất
+const getNewMessageController = async (id) => {
+  try {
+    return await chatMessageService.getNewMessage(id);
+  } catch (error) {
+    return null;
+  }
+};
+
+module.exports = {
+  getMessageByIdController,
+  sendMessageController,
+  getNewMessageController,
+};

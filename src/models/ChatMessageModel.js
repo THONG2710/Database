@@ -1,3 +1,4 @@
+const { Double } = require("mongodb");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.ObjectId;
@@ -9,6 +10,7 @@ const chatMessageSchema = new Schema({
   createdat: { type: Number },
   sender: { type: ObjectId },
   seen: { type: Boolean },
+  isimage: { type: Boolean },
 });
 
 module.exports = mongoose.model("chatmessage", chatMessageSchema);

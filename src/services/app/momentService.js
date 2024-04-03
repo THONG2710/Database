@@ -30,7 +30,14 @@ const getMomentById = async (id) => {
 };
 
 // đăng khoảnh khắc
-const createMoment = async (userid, createdat, content, caption, description, isimage) => {
+const createMoment = async (
+  userid,
+  createdat,
+  content,
+  caption,
+  description,
+  isimage
+) => {
   try {
     const moment = {
       userid: userid,
@@ -77,7 +84,11 @@ const getFriendsMoment = async (id) => {
           .exec();
         friendsMoments.push(...moment);
       }
-      return friendsMoments;
+      const sortFriendsMoments = friendsMoments.sort(
+        (a, b) => b.createdat - a.createdat
+      );
+      console.log(sortFriendsMoments);
+      return sortFriendsMoments;
     }
     return null;
   } catch (error) {

@@ -11,9 +11,9 @@ router.get("/getMessageById", async (req, res, next) => {
     if (messages) {
       return res.status(200).json({ result: true, messages: messages });
     }
-    return res.status(500).json({ result: true, diaries: null });
+    return res.status(500).json({ result: false, messages: null });
   } catch (error) {
-    return res.status(400).json({ result: true, error: error.message });
+    return res.status(400).json({ result: false, error: error.message });
   }
 });
 
@@ -21,20 +21,36 @@ router.get("/getMessageById", async (req, res, next) => {
 // http://localhost:3000/api/chatMessage/sendMessage
 router.post("/sendMessage", async (req, res, next) => {
   try {
-    const { receiver, content, createdat, sender, seen } = req.body;
+    const { receiver, content, createdat, sender, seen, isimage } = req.body;
     const messages = await chatMessageController.sendMessageController(
       receiver,
       content,
       createdat,
       sender,
-      seen
+      seen,
+      isimage
     );
     if (messages) {
       return res.status(200).json({ result: true, messages: messages });
     }
-    return res.status(500).json({ result: true, diaries: null });
+    return res.status(500).json({ result: false, messages: null });
   } catch (error) {
-    return res.status(400).json({ result: true, error: error.message });
+    return res.status(400).json({ result: false, error: error.message });
+  }
+});
+
+//  lấy tin nhắn mới nhất
+// http://localhost:3000/api/chatMessage/getNewMessages/
+router.get("/getNewMessages/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const messages = await chatMessageController.getNewMessageController(id);
+    if (messages) {
+      return res.status(200).json({ result: true, messages: messages });
+    }
+    return res.status(500).json({ result: false, messages: null });
+  } catch (error) {
+    return res.status(400).json({ result: false, error: error.message });
   }
 });
 
