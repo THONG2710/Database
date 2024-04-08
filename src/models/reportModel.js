@@ -6,8 +6,8 @@ const reportSchema = new Schema({
   _id: { type: ObjectId },
   username: { type: String },
   id_diary: { type: String },
-  userid: { type: String },
-  createdat: { type: String },
+  id_user: { type: String },
+  time_created: { type: String },
   reason: { type: String },
   status: { type: Boolean},
 });

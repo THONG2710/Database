@@ -4,10 +4,10 @@ const reportController = require("../../controllers/web/reportController");
 const { checkTokenWeb } = require("../../middleware/authen");
 
 //table Users
-router.get("/report", [], reportController.getAllReports);
+router.get("/report", [checkTokenWeb], reportController.getAllReports);
 
 //ban report
-router.post("/banreport/:id", [], async (req, res) => {
+router.post("/banreport/:id", [checkTokenWeb], async (req, res) => {
   try {
     const { id } = req.params;
     const result = await reportController.banReport(id) ;

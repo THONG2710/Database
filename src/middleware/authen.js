@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 // kiem tra token cua web cpanel
 const checkTokenWeb = (req, res, next) => {
     // return next(); // bo qua check token dung de test
-    const { session } = req; // lay session
+   const { session } = req; // lay session
     const url = req.originalUrl.toLowerCase(); // lay url
     
     // neu khong co session thi chuyen qua login
@@ -44,7 +44,7 @@ const checkTokenWeb = (req, res, next) => {
                     } else {
                         // kiem tra role
                         const { role } = decoded;
-                        if (role !==1) {
+                        if (role != 1) {
                             req.session.destroy();
                             return res.redirect('/signin');
 

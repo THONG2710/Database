@@ -4,6 +4,6 @@ const { getAllDiary } = require("../../controllers/web/diaryController");
 const { checkTokenWeb } = require("../../middleware/authen");
 
 //table Users
-router.get("/diary", [], getAllDiary);
+router.get("/diary", [checkTokenWeb], getAllDiary);
 
 module.exports = router;

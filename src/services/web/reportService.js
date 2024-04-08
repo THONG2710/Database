@@ -3,9 +3,9 @@ const userModel = require("../../models/userModel");
 
 const getAllReports = async () => {
   try {
-    const reports = await reportModel.find().sort({ createdat: -1 });
+    const reports = await reportModel.find().sort({ time_created: -1 });
     for (const report of reports) {
-      const userid = report.get("userid");
+      const userid = report.get("id_user");
       if (userid) {
         const user = await userModel.findById(userid);
         report.username = user?.username;
