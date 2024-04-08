@@ -1,5 +1,5 @@
 const momentModel = require("../../models/momentModel");
-const userModel = require("../../models/userModel");
+const userModel = require("../../models/UserModel");
 
 const getAllMoment = async () => {
   try {

@@ -1,5 +1,5 @@
 const reportModel = require("../../models/reportModel");
-const userModel = require("../../models/userModel");
+const userModel = require("../../models/UserModel");
 
 const getAllReports = async () => {
   try {

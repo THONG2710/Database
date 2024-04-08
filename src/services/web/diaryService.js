@@ -1,5 +1,5 @@
 const diaryModel = require("../../models/diaryModel");
-const userModel = require("../../models/userModel");
+const userModel = require("../../models/UserModel");
 
 const getAllDiary = async () => {
   try {
