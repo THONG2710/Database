@@ -47,10 +47,10 @@
 
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
-            <nav class="navbar bg-secondary navbar-dark">
+            <nav class="navbar navbar-dark">
                 <a href="/" class="navbar-brand mx-4 mb-3">
 
-                    <h3 class="text-primary">
+                    <h3 class="text-title">
                         <img src="../img/logo.png" alt="" style="width: 60px; height: 60px;">
                         </i>SEMO
                     </h3>
@@ -63,17 +63,18 @@
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h5 class="mb-0 " style="color: black;">Linh Tùng</h5>
-                        <span>Admin</span>
+                        <h5 class="mb-0 " style="color: white;">Linh Tùng</h5>
+                        <span class="text-title">Admin</span>
                     </div>
                 </div>
-                <div class="navbar-nav w-100">
+                <div class=" navbar-nav w-100">
 
 
                     <a href="/" class="nav-item nav-link active"><i class="fa fa-user me-2"></i>Người dùng</a>
                     <a href="/diary" class="nav-item nav-link"><i class="fa fa-book"></i> Nhật kí</a>
                     <a href="/moment" class="nav-item nav-link"><i class="fa fa-book"></i> Khoảnh khắc</a>
-                    <a href="/report" class="nav-item nav-link"><i class="fa fa-exclamation-triangle"></i> Báo cáo</a>
+                    <a href="/report" class="nav-item nav-link"><i class="fa fa-exclamation-triangle"></i> Báo
+                        cáo</a>
 
 
 
@@ -87,12 +88,12 @@
         <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
-            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+            <nav class="navbar navbar-expand bg-blue navbar-dark sticky-top px-4 py-0">
                 <a href="/" class="navbar-brand d-flex d-lg-none me-4">
                     <h2 class="text-primary mb-0"> <img src="../img/logo.png" alt="" style="width: 60px; height: 60px;">
                     </h2>
                 </a>
-                <a href="#" class="sidebar-toggler flex-shrink-0">
+                <a href="#" class="sidebar-toggler text-title flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
                 <form class="d-none d-md-flex ms-4">
@@ -109,7 +110,7 @@
                                 style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex">Linh Tùng</span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                        <div class="dropdown-menu dropdown-menu-end bg-blue border-0 rounded-0 rounded-bottom m-0">
 
                             <a href="#" class="dropdown-item">Log Out</a>
                         </div>
@@ -124,11 +125,11 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Chi tiết người dùng</h6>
+                            <h6 class="mb-4" style="color: #59AEEF;">Chi tiết người dùng</h6>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
-                                        <tr style="color: #EB1616">
+                                        <tr style="color: #59AEEF">
                                             <th scope="col">Avatar</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
@@ -156,10 +157,10 @@
                                             </td>
                                             <td>
 
-                                                <button type="button" class="btn btn-primary m-2"
+                                                <button type="button" class="btn bg-blue m-2"
                                                     style="height: 40px; width: 110px;" onclick="confirmBanUser()">
-                                                    <i class="fa fa-ban"></i>
-                                                    <p class="d-none d-lg-inline-flex">
+                                                    <i class="fa fa-ban text-title"></i>
+                                                    <p class="d-none d-lg-inline-flex text-title">
                                                         <%= user.available ? "Chặn" : "Gỡ chặn" %>
                                                     </p>
                                                 </button>
@@ -181,11 +182,11 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Nhật kí</h6>
+                            <h6 class="mb-4" style="color: #59AEEF;">Nhật kí</h6>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
-                                        <tr style="color: #EB1616">
+                                        <tr style="color: #59AEEF">
                                             <th scope="col">STT</th>
                                             <!-- <th scope="col">Chi tiết</th> -->
                                             <th scope="col">Nội dung</th>
@@ -240,11 +241,11 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Khoảnh khắc</h6>
+                            <h6 class="mb-4" style="color: #59AEEF;">Khoảnh khắc</h6>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
-                                        <tr style="color: #EB1616">
+                                        <tr style="color: #59AEEF">
                                             <th scope="col">STT</th>
                                             <th scope="col">Ảnh</th>
                                             <th scope="col">Tiêu đề</th>
@@ -366,11 +367,12 @@
                 <div class="bg-secondary rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">SEMO</a>, All Right Reserved.
+                            &copy; <a href="#" style="color: #59AEEF;">SEMO</a>, All Right Reserved.
                         </div>
                         <div class="col-12 col-sm-6 text-center text-sm-end">
                             <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a href="https://www.facebook.com/linhtungf" target="_blank">Linh đẹp trai</a>
+                            Designed By <a style="color: #59AEEF;" href="https://www.facebook.com/linhtungf"
+                                target="_blank">Linh đẹp trai</a>
 
                         </div>
                     </div>
@@ -382,7 +384,8 @@
 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top bg-blue" style="border-color: #59AEEF;"><i
+                class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->
