@@ -19,7 +19,7 @@ router.get("/getNotificationsById/:id", async (req, res, next) => {
   }
 });
 
-// lấy  thông báo theo người dùng
+// tạo  thông báo
 // http://localhost:3000/api/notifications/createNewNotification
 router.post("/createNewNotification", async (req, res, next) => {
   try {

@@ -78,7 +78,11 @@ const getUsers = async (id) => {
       status: { $in: [2, 3] },
     });
     const users = await UserModel.find({
-      $and: [{ _id: { $ne: id } }, { _id: { $nin: friends } }],
+      $and: [
+        { _id: { $ne: id } },
+        { _id: { $nin: friends } },
+        { available: true },
+      ],
     });
     if (users) {
       return users;

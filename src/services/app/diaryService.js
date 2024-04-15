@@ -18,7 +18,7 @@ const getAllDiaries = async () => {
 //  lấy nhật ký theo id người dùng
 const getDiariesByIdUser = async (idUser) => {
   try {
-    const diaries = await diaryModel.find({ userid: idUser }).exec();
+    const diaries = await diaryModel.find({ userid: idUser, isavailable: true }).exec();
     if (diaries) {
       return diaries;
     }
@@ -64,6 +64,7 @@ const createDiary = async (idUser, diary, createdat, privacy) => {
       diary: diary,
       createdat: createdat,
       privacy: privacy,
+      isavailable: true,
     };
     const newDiary = new diaryModel(Diary);
     const createDiary = await newDiary.save();
