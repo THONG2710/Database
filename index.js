@@ -27,6 +27,8 @@ const {
   signInRouter,
   usersRouter,
   reportRouter,
+  momentRouter,
+  diaryRouter,
 } = require("./src/routes/web/indexRouter");
 
 var app = express();
@@ -97,7 +99,9 @@ app.use('/api/notifications', notificationApi)
 app.use(
   signInRouter, // http://localhost:3000/signin
   usersRouter, // http://localhost:3000/
-  reportRouter // http://localhost:3000/report
+  reportRouter, // http://localhost:3000/report
+  momentRouter,
+  diaryRouter
 );
 
 app.listen(port, hostname, async () => {
