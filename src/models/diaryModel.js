@@ -8,6 +8,7 @@ const diarySchema = new Schema({
   diary: { type: String },
   privacy: { type: Number },
   createdat: { type: Number },
+  isavailable: { type: Boolean },
 });
 
 module.exports = mongoose.model("diaries", diarySchema);

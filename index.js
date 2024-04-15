@@ -21,6 +21,7 @@ const todoItemApi = require("./src/routes/api/todoItemApi");
 const commentApi = require("./src/routes/api/commentApi");
 const likesApi = require("./src/routes/api/likeApi");
 const reportApi = require("./src/routes/api/reportApi");
+const notificationApi = require("./src/routes/api/notificationApi");
 // dành cho cpnel
 const {
   signInRouter,
@@ -91,6 +92,7 @@ app.use("/api/itemTodo", todoItemApi);
 app.use("/api/comments", commentApi);
 app.use("/api/likes", likesApi);
 app.use("/api/report", reportApi);
+app.use('/api/notifications', notificationApi)
 // dành cho cpnel
 app.use(
   signInRouter, // http://localhost:3000/signin

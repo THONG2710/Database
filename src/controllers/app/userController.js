@@ -66,6 +66,49 @@ const findUserByPhoneNumberController = async (phoneNumber, id) => {
   }
 };
 
+// đăng kí tài khoản
+const register = async (
+  username,
+  password,
+  email,
+  avatar,
+  phonenumber,
+  createdat
+) => {
+  try {
+    const res = await userService.register(
+      username,
+      password,
+      email,
+      avatar,
+      phonenumber,
+      createdat
+    );
+    console.log(res);
+    return res;
+  } catch (error) {
+    return null;
+  }
+};
+
+// kiểm tra tài khoản
+const checkIsAvailableAccountController = async (email) => {
+  try {
+    return await userService.checkIsAvailableAccount(email);
+  } catch (error) {
+    return null;
+  }
+};
+
+// lấy tài khoản bằng email
+const getAccountByEmailController = async (email) => {
+  try {
+    return await userService.getAccountByEmail(email);
+  } catch (error) {
+    return null;
+  }
+};
+
 module.exports = {
   getAllUsersController,
   loginWithPhoneNumberController,
@@ -73,5 +116,8 @@ module.exports = {
   getUserByIdController,
   updateUser,
   findUserByNameController,
-  findUserByPhoneNumberController
+  findUserByPhoneNumberController,
+  register,
+  checkIsAvailableAccountController,
+  getAccountByEmailController,
 };

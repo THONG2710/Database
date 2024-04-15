@@ -73,7 +73,13 @@ router.get("/getUserById", async (req, res, next) => {
 router.post("/updateUser", async (req, res, next) => {
   try {
     const { id, username, email, avatar, phonenumber } = req.body;
-    const user = await userController.updateUser(id, username, email, avatar, phonenumber);
+    const user = await userController.updateUser(
+      id,
+      username,
+      email,
+      avatar,
+      phonenumber
+    );
     if (user) {
       return res.status(200).json({ result: true, user: user });
     }
@@ -103,7 +109,10 @@ router.get("/findUserByName", async (req, res, next) => {
 router.get("/findUserByPhoneNumber", async (req, res, next) => {
   try {
     const { phoneNumber, id } = req.query;
-    const user = await userController.findUserByPhoneNumberController(phoneNumber, id);
+    const user = await userController.findUserByPhoneNumberController(
+      phoneNumber,
+      id
+    );
     if (user) {
       return res.status(200).json({ result: true, user: user });
     }
@@ -113,5 +122,65 @@ router.get("/findUserByPhoneNumber", async (req, res, next) => {
   }
 });
 
+// đăng kí tài khoản
+// http://localhost:3000/api/users/register
+router.post("/register", async (req, res, next) => {
+  try {
+    const { username, password, email, avatar, phonenumber, createdat } =
+      req.body;
+    const user = await userController.register(
+      username,
+      password,
+      email,
+      avatar,
+      phonenumber,
+      createdat
+    );
+    if (user) {
+      return res.status(200).json({ result: true, user: user });
+    }
+    return res.status(500).json({ result: false, user: null });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ result: false, user: null, error: error.message });
+  }
+});
+
+// kiểm tra tài khoản
+// http://localhost:3000/api/users/checkEmail?email=
+router.get("/checkEmail", async (req, res, next) => {
+  try {
+    const { email } = req.query;
+    const response = await userController.checkIsAvailableAccountController(
+      email
+    );
+    if (response) {
+      return res.status(200).json({ result: true, user: response });
+    }
+    return res.status(200).json({ result: true, user: response });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ result: false, user: null, error: error.message });
+  }
+});
+
+// lấy tài khoản bẳng email
+// http://localhost:3000/api/users/getAccountByEmail?email=
+router.get("/getAccountByEmail", async (req, res, next) => {
+  try {
+    const { email } = req.query;
+    const response = await userController.getAccountByEmailController(email);
+    if (response) {
+      return res.status(200).json({ result: true, user: response });
+    }
+    return res.status(500).json({ result: false, user: null });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ result: false, user: null, error: error.message });
+  }
+});
 
 module.exports = router;
