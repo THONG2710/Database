@@ -4,10 +4,10 @@ const userController = require("../../controllers/web/usersController");
 const { checkTokenWeb } = require("../../middleware/authen");
 
 //table Users
-router.get("/", [], userController.getAllUsers);
+router.get("/", [checkTokenWeb], userController.getAllUsers);
 
 //User detail
-router.get("/userdetail/:id", [], async (req, res) => {
+router.get("/userdetail/:id", [checkTokenWeb], async (req, res) => {
   try {
     const { id } = req.params;
     const user = await userController.getUserById(id);
@@ -22,7 +22,7 @@ router.get("/userdetail/:id", [], async (req, res) => {
   }
 });
 //ban user
-router.post("/banuser/:id", [], async (req, res) => {
+router.post("/banuser/:id", [checkTokenWeb], async (req, res) => {
   try {
     const { id } = req.params;
     const result = await userController.banUser(id);
