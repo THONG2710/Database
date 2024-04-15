@@ -11,6 +11,7 @@ const userSchema = new Schema({
   avatar: { type: String },
   phonenumber: { type: String },
   createdAt: { type: Number },
+  role: { type: Number },
 });
 
 module.exports = mongoose.model("user", userSchema);
