@@ -13,7 +13,7 @@ const getAllUsers = async () => {
 // getUserById
 const getUserById = async (id) => {
   try {
-    console.log(id);
+    // console.log(id);
     const user = await userModel.findById(id);
     return user;
   } catch (error) {

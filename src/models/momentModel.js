@@ -13,6 +13,7 @@ const momentScheme = new Schema({
   video: { type: Array },
   createdat: { type: String },
   liked: { type: String },
+  isimage: { type: Boolean },
 });
 
 module.exports = mongoose.model("moments", momentScheme);

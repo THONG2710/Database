@@ -136,7 +136,14 @@
                                                     <%= index+1 %>
                                                 </td>
                                                 <td>
-                                                    <img src="<%= moment.content %>" alt="" height="100">
+                                                    <% if (moment.isimage) { %>
+                                                        <img src="<%= moment.content %>" alt="" height="100">
+                                                      <% } else { %>
+                                                        <video width="100" height="100" controls autoplay>
+                                                          <source src="<%= moment.content %>" type="video/mp4" >
+                                                        </video>
+                                                      <% } %>
+                                                    
                                                 </td>
                                                 <td>
                                                     <%= moment.username %>
