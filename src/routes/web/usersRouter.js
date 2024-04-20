@@ -15,7 +15,7 @@ router.get("/userdetail/:id", [checkTokenWeb], async (req, res) => {
     const moments = await userController.getMomentsByUserId(id);
     
     // console.log(user);
-    console.log(diaries);
+    // console.log(diaries);
     res.render("user/userdetail.ejs", { user, diaries, moments });
   } catch (error) {
     return error;

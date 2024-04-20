@@ -1,3 +1,4 @@
+const diaryModel = require("../../models/diaryModel");
 const reportModel = require("../../models/reportModel");
 const userModel = require("../../models/UserModel");
 
@@ -10,8 +11,14 @@ const getAllReports = async () => {
         const user = await userModel.findById(userid);
         report.username = user?.username;
       }
+      const diaryid = report.get("id_diary");
+      if (diaryid) {
+        const diary = await diaryModel.findById(diaryid);
+        report.diary = diary.diary;
+        
+      }
     }
-    // console.log(reports);
+    console.log(reports);
     return reports;
   } catch (error) {
     return error;

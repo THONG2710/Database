@@ -11,7 +11,7 @@ const getAllDiary = async () => {
         diary.username = user?.username;
       }
     };
-    console.log(diaries);
+    // console.log(diaries);
     return diaries;
   } catch (error) {
     return error;

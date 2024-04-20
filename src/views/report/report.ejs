@@ -131,6 +131,7 @@
                                             <th scope="col">Người dùng</th>
                                             <th scope="col">Thời gian tạo</th>
                                             <th scope="col">Lí do</th>
+                                            <th scope="col">Hình ảnh</th>
                                             <th scope="col">Trạng thái</th>
                                             <th scope="col">Hành động</th>
                                         </tr>
@@ -153,16 +154,26 @@
                                                     <%= report.reason %>
                                                 </td>
                                                 <td>
+                                                    <img src="<%= report.diary %>" alt="" height="100">
+                                                </td>
+                                                <td>
                                                     <%= report.status ? " Bình thường" :"Bị chặn"%>
                                                 </td>
                                                 <td>
 
                                                     <button type="button" class="btn bg-blue m-2"
                                                         style="height: 40px; width: 110px;"
-                                                        onclick="confirmBanUser('<%= report.status %>', '<%= report._id %>')">
+                                                        onclick="confirmBanUser(<%= report.status %>, '<%= report._id %>')">
                                                         <i class="fa fa-ban text-title"></i>
                                                         <p class="d-none d-lg-inline-flex text-title">
                                                             <%= report.status ? "Chặn" : "Gỡ chặn" %>
+                                                        </p>
+                                                    </button>
+                                                    <button type="button" class="btn bg-blue m-2"
+                                                        style="height: 40px; width: 110px;" onclick="">
+
+                                                        <p class="d-none d-lg-inline-flex text-title">
+                                                            Gỡ báo cáo
                                                         </p>
                                                     </button>
 
@@ -189,7 +200,7 @@
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: `${action} tài khoản`,
+                        confirmButtonText: `${action} báo cáo`,
                         cancelButtonText: "Hủy",
                     }).then((result) => {
                         if (result.isConfirmed) {
