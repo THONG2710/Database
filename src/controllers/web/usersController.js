@@ -1,7 +1,9 @@
 const usersService = require("../../services/web/usersService");
 // getAllUsers
 const getAllUsers = async (req, res) => {
-  const users = await usersService.getAllUsers();
+  const page = req.query.page || 1;
+  const users = await usersService.getAllUsers(page);
+  const numberOfPages = await usersService.getAllUsersPage();
   users.forEach((user) => {
     if (user.createdat) {
       const date = new Date(user.createdat * 1000);
@@ -11,9 +13,8 @@ const getAllUsers = async (req, res) => {
       return (user.createdat = `${day}/${month}/${year}`);
     }
   });
-  // console.log(users);
 
-  res.render("user/index.ejs", { users });
+  res.render("user/index.ejs", { users, numberOfPages, page });
 };
 // getUserById
 const getUserById = async (id) => {
@@ -43,9 +44,9 @@ const banUser = async (id) => {
   }
 };
 // get diaries by user id
-const getDiariesByUserId = async (id) => {
+const getDiariesByUserId = async (id, page) => {
   try {
-    const diaries = await usersService.getDiariesByUserId(id);
+    const diaries = await usersService.getDiariesByUserId(id, page);
     diaries.forEach((diary) => {
       if (diary.createdat) {
         const date = new Date(diary.createdat * 1000);
@@ -61,10 +62,21 @@ const getDiariesByUserId = async (id) => {
     return error;
   }
 };
-// get moments by user id
-const getMomentsByUserId = async (id) => {
+
+// get page diaries by user id
+const getDiariesByUserIdPage = async (id) => {
   try {
-    const moments = await usersService.getMomentsByUserId(id);
+    const result = await usersService.getDiariesByUserIdPage(id);
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
+// get moments by user id
+const getMomentsByUserId = async (id, page) => {
+  try {
+    const moments = await usersService.getMomentsByUserId(id, page);
     moments.forEach((moment) => {
       if (moment.createdat) {
         const date = new Date(moment.createdat * 1000);
@@ -79,10 +91,22 @@ const getMomentsByUserId = async (id) => {
     return error;
   }
 };
+
+// get page moments by user id
+const getMomentsByUserIdPage = async (id) => {
+  try {
+    const result = await usersService.getMomentsByUserIdPage(id);
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
 module.exports = {
   getAllUsers,
   getUserById,
   banUser,
   getDiariesByUserId,
   getMomentsByUserId,
+  getDiariesByUserIdPage,
+  getMomentsByUserIdPage,
 };

@@ -12,12 +12,10 @@ router.get("/signin", [checkTokenWeb], signIn);
 router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
   const result = await postSignin(email, password);
-  // console.log(result);
 
   if (result) {
     // tao token jwt
     // luu token vao session
-    // console.log(result);
     const token = jwt.sign({ _id: result._id, role: result.role }, "secret", {
       expiresIn: "1h",
     });

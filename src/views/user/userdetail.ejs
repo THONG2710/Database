@@ -232,6 +232,18 @@
                             </div>
                         </div>
                     </div>
+                    <div style="display: flex; justify-content: center;">
+                        <% for(let i=1;i<=numberOfPagesDiary;i++){ %>
+                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                <a href="/userdetail?pageDiary=<%=i%> ">
+                                    <button type="button"
+                                        class="<%= i == pageDiary ? 'btn bg-blue' : 'btn btn-secondary' %> ">
+                                        <%= i %>
+                                    </button>
+                                </a>
+                            </div>
+                            <% } %>
+                    </div>
                 </div>
             </div>
             <!-- Table End -->
@@ -283,6 +295,18 @@
                             </div>
                         </div>
                     </div>
+                    <div style="display: flex; justify-content: center;">
+                        <% for(let i=1;i<=numberOfPagesMoment;i++){ %>
+                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                <a href="/moment?pageMoment=<%=i%> ">
+                                    <button type="button"
+                                        class="<%= i == pageMoment ? 'btn bg-blue' : 'btn btn-secondary' %> ">
+                                        <%= i %>
+                                    </button>
+                                </a>
+                            </div>
+                            <% } %>
+                    </div>
                 </div>
             </div>
             <!-- Table End -->
@@ -322,7 +346,6 @@
                         })
 
                         const res = await fetch(url, option).then(res => res.json());
-                        console.log(res);
                         if (res) {
                             Swal.fire({
                                 title: "Chỉnh sửa thành công",
