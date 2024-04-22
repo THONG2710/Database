@@ -37,4 +37,24 @@ const updateWork = async (idWord, status) => {
   }
 };
 
-module.exports = { createItem, updateWork };
+// lấy các item của một todo
+const getItemByTodo = async (idTodo) => {
+  try {
+    const itemsFinished = await todoItemModel.find({
+      todoid: idTodo,
+      status: true,
+    });
+    const itemsUnfinished = await todoItemModel.find({
+      todoid: idTodo,
+      status: false,
+    });
+    if (itemsFinished.length > 0 || itemsUnfinished.length > 0) {
+      return { finished: itemsFinished, unfinished: itemsUnfinished };
+    }
+    return null;
+  } catch (error) {
+    console.log("failed to get item: " + error);
+  }
+};
+
+module.exports = { createItem, updateWork, getItemByTodo };

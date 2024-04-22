@@ -29,8 +29,18 @@ const getCheckTodoListController = async (id, createdat) => {
   }
 };
 
+// lấy todo list theo id người dùng
+const getTodolistByIdUserController = async (id) => {
+  try {
+    return await toDoService.getTodolistByIdUser(id);
+  } catch (error) {
+    return null;
+  }
+};
+
 module.exports = {
   createToDoController,
   getTodolistController,
   getCheckTodoListController,
+  getTodolistByIdUserController,
 };

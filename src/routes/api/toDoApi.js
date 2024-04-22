@@ -25,7 +25,10 @@ router.post("/createToDoList", async (req, res, next) => {
 router.get("/getTodolist", async (req, res, next) => {
   try {
     const { userid, createdat } = req.query;
-    const todolist = await toDoController.getTodolistController(userid, createdat);
+    const todolist = await toDoController.getTodolistController(
+      userid,
+      createdat
+    );
     if (todolist) {
       return res.status(200).json({ result: true, todolist: todolist });
     }
@@ -44,6 +47,21 @@ router.get("/getCheckTodolist", async (req, res, next) => {
       id,
       createdat
     );
+    if (todolist) {
+      return res.status(200).json({ result: true, todolist: todolist });
+    }
+    return res.status(500).json({ result: false, todolist: null });
+  } catch (error) {
+    return res.status(400).json({ result: false, error: error });
+  }
+});
+
+// lấy todolist theo id người dùng
+// http://localhost:3000/api/todolist/getTodolistByIdUser?id=
+router.get("/getTodolistByIdUser", async (req, res, next) => {
+  try {
+    const { id } = req.query;
+    const todolist = await toDoController.getTodolistByIdUserController(id);
     if (todolist) {
       return res.status(200).json({ result: true, todolist: todolist });
     }

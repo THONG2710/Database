@@ -37,4 +37,19 @@ router.post("/updateWork", async (req, res, next) => {
   }
 });
 
+// lấy danh sách item theo todo
+// http://localhost:3000/api/itemTodo/getItemByTodo?id=
+router.get("/getItemByTodo", async (req, res, next) => {
+  try {
+    const { id } = req.query;
+    const item = await todoItemController.getItemByTodo(id);
+    if (item) {
+      return res.status(200).json({ result: true, item: item });
+    }
+    return res.status(500).json({ result: false, item: null });
+  } catch (error) {
+    return res.status(400).json({ result: false, error: error });
+  }
+});
+
 module.exports = router;

@@ -4,36 +4,6 @@ const toDoItemModel = require("../../models/toDoItemModel");
 // tạo mới một todolist
 const createToDo = async (userid, createdat) => {
   try {
-    // const date = new Date(createdat);
-    // const Nday = date.getDay();
-    // const Nmonth = date.getMonth() + 1;
-    // const Nyear = date.getFullYear();
-    // const todos = await toDoModel.find({ userid: userid }).exec();
-    // let isAvalible = false;
-    // let td = {};
-    // for (const todo of todos) {
-    //   const date = new Date(todo.createdat);
-    //   const day = date.getDay();
-    //   const month = date.getMonth() + 1;
-    //   const year = date.getFullYear();
-    //   if (day === Nday && month === Nmonth && year === Nyear) {
-    //     console.log(day, Nday, month, Nmonth, year, Nyear);
-    //     isAvalible = true;
-    //     td = todo;
-    //     break;
-    //   }
-    // }
-    // if (isAvalible) {
-    //   console.log("đã có todolist của ngày hôm nay");
-    //   return null;
-    // } else {
-    //   const todo = { userid: userid, createdat: createdat };
-    //   const newToDo = new toDoModel(todo);
-    //   const res = await newToDo.save();
-    //   if (res) {
-    //     return res;
-    //   }
-    // }
     const previousDate = new Date(createdat * 1000);
     previousDate.setDate(previousDate.getDate() - 1);
     const nextDate = new Date(createdat * 1000);
@@ -137,4 +107,23 @@ const getTodolist = async (id, created) => {
   }
 };
 
-module.exports = { createToDo, getTodolistById, getTodolist };
+// lấy todolist theo người dùng
+const getTodolistByIdUser = async (id) => {
+  try {
+    const todos = await toDoModel.find({ userid: id });
+    if (todos) {
+      const sortTodos = todos.sort((a, b) => b.createdat - a.createdat);
+      return sortTodos;
+    }
+    return null;
+  } catch (error) {
+    console.log("failed to get todo list: " + error.message);
+  }
+};
+
+module.exports = {
+  createToDo,
+  getTodolistById,
+  getTodolist,
+  getTodolistByIdUser,
+};

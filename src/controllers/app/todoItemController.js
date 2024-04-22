@@ -23,4 +23,13 @@ const updateWorkController = async (idWord, status) => {
   }
 };
 
-module.exports = { createItemController, updateWorkController };
+// lấy item theo todo
+const getItemByTodo = async (idTodo) => {
+  try {
+    return await todoItemService.getItemByTodo(idTodo);
+  } catch (error) {
+    return null;
+  }
+};
+
+module.exports = { createItemController, updateWorkController, getItemByTodo };
