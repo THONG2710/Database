@@ -1,8 +1,9 @@
 const momentService = require("../../services/web/momentService");
 
 const getAllMoment = async (req, res) => {
-  const moments = await momentService.getAllMoment();
-  // console.log(reports);
+  let page = req.query.page || 1;
+  const moments = await momentService.getAllMoment(page);
+  const numberOfPages = await momentService.getAllUsersPage();
   moments.forEach((moment) => {
     if (moment.createdat) {
       const date = new Date(moment.createdat * 1000);
@@ -12,7 +13,7 @@ const getAllMoment = async (req, res) => {
       moment.createdat = `${day}/${month}/${year}`;
     }
   });
-  res.render("moment/moments.ejs", { moments });
+  res.render("moment/moments.ejs", { moments, numberOfPages, page});
 };
 
 module.exports = {

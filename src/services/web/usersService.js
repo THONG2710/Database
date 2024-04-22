@@ -3,13 +3,29 @@ const userModel = require("../../models/userModel");
 const momentModel = require("../../models/momentModel");
 
 // getAllUsers
-const getAllUsers = async () => {
+const getAllUsers = async (page) => {
   try {
-    return await userModel.find().sort({ createdat: -1 });
+    return await userModel
+      .find()
+      .limit(10)
+      .skip((page - 1) * 10)
+      .sort({ createdat: -1 });
   } catch (error) {
     return error;
   }
 };
+
+//lay page
+const getAllUsersPage = async () => {
+  try {
+    const result = await userModel.countDocuments();
+    const numberOfPages = Math.ceil(result / 10);
+    return numberOfPages;
+  } catch (error) {
+    return error;
+  }
+};
+
 // getUserById
 const getUserById = async (id) => {
   try {
@@ -36,23 +52,57 @@ const banUser = async (id) => {
 // get diaries by user id
 const getDiariesByUserId = async (id) => {
   try {
-    return await diaryModel.find({ userid: id });
+    return await diaryModel
+      .find({ userid: id })
+      .limit(10)
+      .sort({ createdat: -1 })
+      .sort({ createdat: -1 });
   } catch (error) {
     return error;
   }
 };
-// get moments by user id
-const getMomentsByUserId = async (id) => {
+
+// get page diaries by user id
+const getDiariesByUserIdPage = async (id) => {
   try {
-    return await momentModel.find({ userid: id });
+    const result = await diaryModel.countDocuments({ userid: id });
+    const numberOfPages = Math.ceil(result / 10);
+    return numberOfPages;
+  } catch (error) {
+    return error;
+  }
+};
+
+// get moments by user id
+const getMomentsByUserId = async (id, page) => {
+  try {
+    return await momentModel
+      .find({ userid: id })
+      .limit(10)
+      .skip((page - 1) * 10)
+      .sort({ createdat: -1 });
+  } catch (error) {
+    return error;
+  }
+};
+
+// get page moments by user id
+const getMomentsByUserIdPage = async (id) => {
+  try {
+    const result = await momentModel.countDocuments({ userid: id });
+    const numberOfPages = Math.ceil(result / 10);
+    return numberOfPages;
   } catch (error) {
     return error;
   }
 };
 module.exports = {
   getAllUsers,
+  getAllUsersPage,
   getUserById,
   banUser,
   getDiariesByUserId,
   getMomentsByUserId,
+  getDiariesByUserIdPage,
+  getMomentsByUserIdPage,
 };

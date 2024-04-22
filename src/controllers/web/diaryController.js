@@ -1,8 +1,9 @@
 const diaryService = require("../../services/web/diaryService");
 
 const getAllDiary = async (req, res) => {
-  const diaries = await diaryService.getAllDiary();
-  // console.log(reports);
+  let page = req.query.page || 1;
+  const diaries = await diaryService.getAllDiary(page);
+  const numberOfPages = await diaryService.getAllDiaryPage();
   diaries.forEach((diary) => {
     if (diary.createdat) {
       const date = new Date(diary.createdat * 1000);
@@ -12,7 +13,7 @@ const getAllDiary = async (req, res) => {
       diary.createdat = `${day}/${month}/${year}`;
     }
   });
-  res.render("diary/diaries.ejs", { diaries });
+  res.render("diary/diaries.ejs", { diaries, numberOfPages,page });
 };
 
 module.exports = {

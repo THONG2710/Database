@@ -9,14 +9,15 @@ router.get("/", [checkTokenWeb], userController.getAllUsers);
 //User detail
 router.get("/userdetail/:id", [checkTokenWeb], async (req, res) => {
   try {
+    let pageDiary = req.query.pageDiary || 1;
+    let pageMoment = req.query.pageMoment || 1;
     const { id } = req.params;
     const user = await userController.getUserById(id);
-    const diaries = await userController.getDiariesByUserId(id);
-    const moments = await userController.getMomentsByUserId(id);
-    
-    // console.log(user);
-    // console.log(diaries);
-    res.render("user/userdetail.ejs", { user, diaries, moments });
+    const diaries = await userController.getDiariesByUserId(id, pageDiary);
+    const moments = await userController.getMomentsByUserId(id, pageMoment);
+    const numberOfPagesDiary = await userController.getDiariesByUserIdPage(id);
+    const numberOfPagesMoment = await userController.getMomentsByUserIdPage(id);
+    res.render("user/userdetail.ejs", { user, diaries, moments, numberOfPagesDiary, numberOfPagesMoment, pageDiary, pageMoment });
   } catch (error) {
     return error;
   }

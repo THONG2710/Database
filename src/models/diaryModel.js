@@ -11,9 +11,10 @@ const diarySchema = new Schema({
   title: { type: String },
   layout: { type: Array },
   createdat: { type: String },
-  privacy: { type: Boolean },
+  privacy: { type: String },
   report: { type: Boolean },
-  username: { type: String},
+  username: { type: String },
+  isavailable: { type: Boolean },
 });
 
 module.exports = mongoose.model("diaries", diarySchema);

@@ -10,11 +10,21 @@ router.get("/report", [checkTokenWeb], reportController.getAllReports);
 router.post("/banreport/:id", [checkTokenWeb], async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await reportController.banReport(id) ;
+    const result = await reportController.banReport(id);
     res.json({ result });
   } catch (error) {
     return error;
   }
 });
 
+//delete report
+router.post("/deletereport/:id", [checkTokenWeb], async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await reportController.deleteReport(id);
+    res.json({ result });
+  } catch (error) {
+    return error;
+  }
+});
 module.exports = router;

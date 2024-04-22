@@ -169,8 +169,23 @@
                             </div>
                         </div>
                     </div>
+                    <div style="display: flex; justify-content: center;">
+                        <% for(let i=1;i<=numberOfPages;i++){ %>
+                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                <a href="/diary?page=<%=i%> ">
+                                    <button type="button"
+                                        class="<%= i == page ? 'btn bg-blue' : 'btn btn-secondary' %> ">
+                                        <%= i %>
+                                    </button>
+
+
+                                </a>
+                            </div>
+                            <% } %>
+                    </div>
                 </div>
             </div>
+
             <!-- Table End -->
 
 
@@ -183,7 +198,8 @@
                         </div>
                         <div class="col-12 col-sm-6 text-center text-sm-end">
                             <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a style="color: #59AEEF;" href="https://www.facebook.com/linhtungf" target="_blank">Linh đẹp trai</a>
+                            Designed By <a style="color: #59AEEF;" href="https://www.facebook.com/linhtungf"
+                                target="_blank">Linh đẹp trai</a>
 
                         </div>
                     </div>
@@ -195,7 +211,8 @@
 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top bg-blue" style="border-color: #59AEEF;"><i class="bi bi-arrow-up"></i></a>
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top bg-blue" style="border-color: #59AEEF;"><i
+                class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->
