@@ -7,9 +7,9 @@ const momentScheme = new Schema({
   userid: { type: ObjectId },
   content: { type: String },
   caption: { type: String },
-  createdat: { type: Number },
+  createdat: { type: String },
   description: { type: String },
-  isimage: {type: Boolean}
+  isimage: { type: Boolean },
 });
 
 module.exports = mongoose.model("moments", momentScheme);

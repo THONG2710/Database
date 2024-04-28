@@ -10,7 +10,7 @@ const userSchema = new Schema({
   available: { type: Boolean },
   avatar: { type: String },
   phonenumber: { type: String },
-  createdAt: { type: Number },
+  createdAt: { type: String },
   role: { type: Number },
 });
 

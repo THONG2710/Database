@@ -9,7 +9,7 @@ const getAllUsers = async (page) => {
       .find()
       .limit(10)
       .skip((page - 1) * 10)
-      .sort({ createdat: -1 });
+      .sort({ createdAt: -1 });
   } catch (error) {
     return error;
   }

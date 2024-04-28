@@ -6,7 +6,7 @@ const reportSchema = new Schema({
   id: { type: ObjectId },
   id_diary: { type: ObjectId },
   id_user: { type: ObjectId },
-  time_created: { type: Number },
+  time_created: { type: String },
   reason: { type: String },
   status: { type: String },
 });

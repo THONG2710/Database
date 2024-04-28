@@ -7,7 +7,7 @@ const diarySchema = new Schema({
   userid: { type: ObjectId },
   diary: { type: String },
   privacy: { type: Number },
-  createdat: { type: Number },
+  createdat: { type: String },
   isavailable: { type: Boolean },
 });
 

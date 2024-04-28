@@ -5,12 +5,12 @@ const getAllUsers = async (req, res) => {
   const users = await usersService.getAllUsers(page);
   const numberOfPages = await usersService.getAllUsersPage();
   users.forEach((user) => {
-    if (user.createdat) {
-      const date = new Date(user.createdat * 1000);
+    if (user.createdAt) {
+      const date = new Date(user.createdAt * 1000);
       const day = String(date.getDate()).padStart(2, "0");
       const month = String(date.getMonth() + 1).padStart(2, "0");
       const year = date.getFullYear();
-      return (user.createdat = `${day}/${month}/${year}`);
+      return (user.createdAt = `${day}/${month}/${year}`);
     }
   });
 
@@ -21,14 +21,14 @@ const getUserById = async (id) => {
   try {
     const user = await usersService.getUserById(id);
 
-    if (user.createdat) {
-      const date = new Date(user.createdat * 1000);
+    if (user.createdAt) {
+      const date = new Date(user.createdAt * 1000);
       const day = String(date.getDate()).padStart(2, "0");
       const month = String(date.getMonth() + 1).padStart(2, "0");
       const year = date.getFullYear();
-      user.createdat = `${day}/${month}/${year}`;
+      user.createdAt = `${day}/${month}/${year}`;
     }
-
+    
     return user;
   } catch (error) {
     return false;

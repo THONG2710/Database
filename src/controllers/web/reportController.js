@@ -13,7 +13,7 @@ const getAllReports = async (req, res) => {
       report.time_created = `${day}/${month}/${year}`;
     }
   });
-  res.render("report/report.ejs", { reports, numberOfPages, page});
+  res.render("report/report.ejs", { reports, numberOfPages, page });
 };
 
 //ban report
