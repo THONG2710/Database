@@ -39,7 +39,7 @@ const getDiariesMyFriends = async (idUser) => {
       const id = friend.friendid;
       const diaries = await diaryModel
         .find({
-          $and: [{ userid: id }, { $or: [{ privacy: 2 }, { privacy: 3 }] }],
+          $and: [{ userid: id }, { $or: [{ privacy: 2 }, { privacy: 3 }] }, {isavailable: true}],
         })
         .exec();
       listDiariesMyFriends.push(...diaries);
