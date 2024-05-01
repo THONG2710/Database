@@ -77,10 +77,15 @@ const getUsers = async (id) => {
       userid: id,
       status: { $in: [2, 3] },
     });
+    const friend2s = await friendModel.distinct("friendid", {
+      friendid: id,
+      status: { $in: [2, 3] },
+    });
     const users = await UserModel.find({
       $and: [
         { _id: { $ne: id } },
         { _id: { $nin: friends } },
+        {_id: {$nin: friend2s}},
         { available: true },
       ],
     });
@@ -118,6 +123,7 @@ const cancelRequest = async (idRequest) => {
       { _id: idRequest },
       { $set: { status: 1 } }
     );
+    console.log(idRequest);
     if (result) {
       return result;
     }
