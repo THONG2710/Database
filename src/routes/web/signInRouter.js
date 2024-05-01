@@ -10,15 +10,18 @@ const { checkTokenWeb } = require("../../middleware/authen");
 router.get("/signin", [checkTokenWeb], signIn);
 
 router.post("/signin", async (req, res) => {
-  const { email, password } = req.body;
-  const result = await postSignin(email, password);
+  const result = await postSignin();
 
   if (result) {
     // tao token jwt
     // luu token vao session
-    const token = jwt.sign({ _id: result._id, role: result.role }, "secret", {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      { _id: result._id, name: result.username },
+      "secret",
+      {
+        expiresIn: "1h",
+      }
+    );
     // console.log(role);
     req.session.token = token;
     console.log("Sign in successfully!");

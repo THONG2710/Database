@@ -5,8 +5,8 @@ const signIn = (req, res) => {
   res.render("signin.ejs");
 };
 
-const postSignin = async (email, password) => {
-  return await signInService.signIn(email, password);
+const postSignin = async () => {
+  return await signInService.signIn();
 };
 
 module.exports = {
