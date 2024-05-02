@@ -141,12 +141,30 @@ router.post("/acceptRequest/:id", async (req, res, next) => {
   }
 });
 
-// tìm kiếm yêu cầu
+// tìm kiếm yêu cầu bạn bè
 // http://localhost:3000/api/friend/findFriendRequest?myId=&friendId=
 router.get("/findFriendRequest", async (req, res, next) => {
   try {
     const { myId, friendId } = req.query;
-    const result = await friendController.findFriendRequestController(myId, friendId);
+    const result = await friendController.findFriendRequestController(
+      myId,
+      friendId
+    );
+    if (result) {
+      return res.status(200).json({ result: true, request: result });
+    }
+    return res.status(500).json({ result: false, request: null });
+  } catch (error) {
+    return res.status(400).json({ result: false, error: error });
+  }
+});
+
+// tìm kiếm yêu cầu
+// http://localhost:3000/api/friend/findRequest?myId=&friendId=
+router.get("/findRequest", async (req, res, next) => {
+  try {
+    const { myId, friendId } = req.query;
+    const result = await friendController.findRequestController(myId, friendId);
     if (result) {
       return res.status(200).json({ result: true, request: result });
     }

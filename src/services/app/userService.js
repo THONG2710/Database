@@ -20,10 +20,22 @@ const loginWithPhoneNumber = async (phoneNumber, password) => {
       phonenumber: phoneNumber,
       password: password,
     });
-    if (user) {
+    if (user.length > 0) {
       return user;
+    } else {
+      return [
+        {
+          _id: "",
+          username: "",
+          password: "",
+          email: "",
+          available: false,
+          avatar: "",
+          phonenumber: "",
+          createdAt: "",
+        },
+      ];
     }
-    return null;
   } catch (error) {
     console.log("login with phone number failed, error:", error);
     return null;

@@ -74,21 +74,18 @@ const getUsersSentRequest = async (id) => {
 const getUsers = async (id) => {
   try {
     const friends = await friendModel.distinct("friendid", {
-      userid: id,
+      $or: [{userid: id}, {friendid: id}] ,
       status: { $in: [2, 3] },
     });
-    const friend2s = await friendModel.distinct("friendid", {
-      friendid: id,
-      status: { $in: [2, 3] },
-    });
+    console.log(friends);
     const users = await UserModel.find({
       $and: [
         { _id: { $ne: id } },
         { _id: { $nin: friends } },
-        {_id: {$nin: friend2s}},
         { available: true },
       ],
     });
+    console.log();
     if (users) {
       return users;
     }
@@ -168,7 +165,7 @@ const AcceptRequest = async (id) => {
   }
 };
 
-// tìm kiếm yêu cầu
+// tìm kiếm yêu cầu bạn bè
 const findFriendsRequest = async (myId, friendId) => {
   try {
     const request = await friendModel.findOne({
@@ -178,6 +175,26 @@ const findFriendsRequest = async (myId, friendId) => {
       ],
       status: 3,
     });
+    if (request) {
+      return request;
+    }
+    return null;
+  } catch (error) {
+    console.log("failed to find friend: " + error.message);
+  }
+};
+
+// tìm kiếm yêu cầu 
+const findRequest = async (myId, friendId) => {
+  try {
+    const request = await friendModel.findOne({
+      $or: [
+        { userid: myId, friendid: friendId },
+        { userid: friendId, friendid: myId },
+      ],
+      status: 2,
+    });
+    console.log(myId, friendId);
     if (request) {
       return request;
     }
@@ -198,4 +215,5 @@ module.exports = {
   getUsersRequest,
   AcceptRequest,
   findFriendsRequest,
+  findRequest
 };

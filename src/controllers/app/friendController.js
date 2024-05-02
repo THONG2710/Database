@@ -61,16 +61,16 @@ const onCancelRequestController = async (idRequest) => {
   } catch (error) {
     return null;
   }
-}
+};
 
-// lấy người dùng đã gửi yêu cầu kết bạn cho mình 
+// lấy người dùng đã gửi yêu cầu kết bạn cho mình
 const getUsersRequestController = async (id) => {
   try {
     return await friendService.getUsersRequest(id);
   } catch (error) {
     return null;
   }
-}
+};
 
 // chấp nhận lời mời kết bạn
 const AcceptRequestController = async (id) => {
@@ -79,16 +79,25 @@ const AcceptRequestController = async (id) => {
   } catch (error) {
     return null;
   }
-}  
+};
 
-// tìm yêu cầu kết bạn 
+// tìm yêu cầu kết bạn
 const findFriendRequestController = async (myId, friendId) => {
   try {
     return await friendService.findFriendsRequest(myId, friendId);
   } catch (error) {
     return null;
   }
-}  
+};
+
+// tìm kiếm yêu cầu
+const findRequestController = async (myId, friendId) => {
+  try {
+    return await friendService.findRequest(myId, friendId);
+  } catch (error) {
+    return null;
+  }
+};
 
 module.exports = {
   getAllFriendController,
@@ -100,5 +109,6 @@ module.exports = {
   onCancelRequestController,
   getUsersRequestController,
   AcceptRequestController,
-  findFriendRequestController
+  findFriendRequestController,
+  findRequestController,
 };

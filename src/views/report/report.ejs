@@ -174,7 +174,7 @@
                                                         style="height: 40px; width: 110px;"
                                                         onclick="confirmDeleteReport('<%= report._id %>')">
                                                         <p class="d-none d-lg-inline-flex text-title">
-                                                            Gỡ báo cáo
+                                                            Xóa
                                                         </p>
                                                     </button>
                                                     <% } %>
@@ -208,12 +208,12 @@
 
                     let action = status ? 'Chặn' : 'Gỡ chặn';
                     Swal.fire({
-                        title: `Bạn có chắc chắn muốn ${action} báo cáo không?`,
+                        title: `Bạn có chắc chắn muốn ${action} bài viết này không?`,
                         icon: "warning",
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: `${action} báo cáo`,
+                        confirmButtonText: `${action} bài viết`,
                         cancelButtonText: "Hủy",
                     }).then((result) => {
                         if (result.isConfirmed) {
@@ -222,7 +222,7 @@
                     })
                 }
 
-                const confirmDeleteReport = (id) => {
+                const confirmDeleteReport = (id) => {   
                     Swal.fire({
                         title: "Bạn có chắc chắn muốn xóa báo cáo không?",
                         icon: "warning",

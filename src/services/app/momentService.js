@@ -75,12 +75,18 @@ const deleteMoment = async (id) => {
 // lấy khoảnh khắc của bạn bè
 const getFriendsMoment = async (id) => {
   try {
-    const friends = await FriendModel.find({ userid: id, status: 3 }).exec();
+    const friends = await FriendModel.find({
+      $or: [{ userid: id }, { friendid: id }],
+      status: 3,
+    }).exec();
     const friendsMoments = [];
+    console.log(friends);
     if (friends) {
       for (const friend of friends) {
         const moment = await momentModel
-          .find({ userid: friend.friendid })
+          .find({
+            $or: [{ userid: friend.friendid }, { userid: friend.userid }],
+          })
           .exec();
         friendsMoments.push(...moment);
       }
