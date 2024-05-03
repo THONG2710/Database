@@ -144,13 +144,13 @@
                                                     <%= diary.username %>
                                                 </td>
                                                 <td>
-                                                    <img src=" <%= diary.diary %>" height="100">
+                                                    <img src=" <%= diary.diary %>" height="200">
                                                 </td>
                                                 <td>
                                                     <%= diary.createdat %>
                                                 </td>
                                                 <td>
-                                                    <%= diary.privacy ? "Riêng tư" :" Công khai"%>
+                                                    <%= diary.privacy === 1 ? "Riêng tư" :" Công khai"%>
                                                 </td>
 
                                                 <!-- <td>
