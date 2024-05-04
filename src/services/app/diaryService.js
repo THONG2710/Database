@@ -18,7 +18,9 @@ const getAllDiaries = async () => {
 //  lấy nhật ký theo id người dùng
 const getDiariesByIdUser = async (idUser) => {
   try {
-    const diaries = await diaryModel.find({ userid: idUser, isavailable: true }).exec();
+    const diaries = await diaryModel
+      .find({ userid: idUser, isavailable: true })
+      .exec();
     if (diaries) {
       return diaries;
     }
@@ -32,18 +34,34 @@ const getDiariesByIdUser = async (idUser) => {
 const getDiariesMyFriends = async (idUser) => {
   try {
     const friends = await friendModel
-      .find({ userid: idUser, status: 3 })
+      .find({ $or: [{ userid: idUser }, { friendid: idUser }], status: 3 })
       .exec();
     const listDiariesMyFriends = [];
     for (const friend of friends) {
       const id = friend.friendid;
+      const id2 = friend.userid;
       const diaries = await diaryModel
         .find({
-          $and: [{ userid: id }, { $or: [{ privacy: 2 }, { privacy: 3 }] }],
+          $and: [
+            { userid: { $in: [id, id2] } },
+            { userid: { $ne: idUser } },
+            // $or: [{ userid: id, userid: id2 }],
+            { privacy: 2 },
+          ],
         })
         .exec();
       listDiariesMyFriends.push(...diaries);
     }
+
+    const public = await diaryModel.find({
+      privacy: 3,
+    });
+
+    listDiariesMyFriends.push(...public);
+    listDiariesMyFriends.forEach((element) => {
+      console.log("====================> failed: " + element._id);
+    });
+    console.log("===========================> " + listDiariesMyFriends.length);
     const sortListDiariesMyFriends = listDiariesMyFriends.sort(
       (a, b) => b.createdat - a.createdat
     );
@@ -80,7 +98,7 @@ const createDiary = async (idUser, diary, createdat, privacy) => {
 // xóa một bài nhật kí
 const deleteDiary = async (id) => {
   try {
-    const res = await diaryModel.deleteOne({_id: id});
+    const res = await diaryModel.deleteOne({ _id: id });
     if (res) {
       return res;
     }
@@ -88,12 +106,12 @@ const deleteDiary = async (id) => {
   } catch (error) {
     console.log("delete diary failled: " + error.message);
   }
-}
+};
 
 module.exports = {
   getAllDiaries,
   getDiariesByIdUser,
   getDiariesMyFriends,
   createDiary,
-  deleteDiary
+  deleteDiary,
 };

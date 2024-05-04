@@ -7,7 +7,7 @@ const getAllUsers = async (page) => {
   try {
     return await userModel
       .find()
-      .limit(10)
+      .limit(6)
       .skip((page - 1) * 10)
       .sort({ createdAt: -1 });
   } catch (error) {

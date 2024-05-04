@@ -83,9 +83,11 @@ const getFriendsMoment = async (id) => {
     console.log(friends);
     if (friends) {
       for (const friend of friends) {
+        const id1 = friend.friendid;
+        const id2 = friend.userid;
         const moment = await momentModel
           .find({
-            $or: [{ userid: friend.friendid }, { userid: friend.userid }],
+            $and: [{ userid: { $in: [id1, id2] } }, { userid: { $ne: id } }],
           })
           .exec();
         friendsMoments.push(...moment);
@@ -93,7 +95,7 @@ const getFriendsMoment = async (id) => {
       const sortFriendsMoments = friendsMoments.sort(
         (a, b) => b.createdat - a.createdat
       );
-      console.log(sortFriendsMoments);
+      console.log(sortFriendsMoments.length);
       return sortFriendsMoments;
     }
     return null;

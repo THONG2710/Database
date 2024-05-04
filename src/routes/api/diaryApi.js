@@ -39,6 +39,9 @@ router.get("/getDiariesMyFriends", async (req, res, next) => {
     const { id } = req.query;
     const diaries = await diaryController.getDiarisMyFriendsController(id);
     if (diaries) {
+      diaries.forEach(element => {
+        console.log(element._id);
+      });
       return res.status(200).json({ result: true, diaries: diaries });
     }
     return res.status(500).json({ result: false, diaries: null });
