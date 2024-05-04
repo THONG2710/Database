@@ -154,7 +154,7 @@
                                                     <%= report.reason %>
                                                 </td>
                                                 <td>
-                                                    <img src="<%= report.diary %>" alt="" height="100">
+                                                    <img src="<%= report.diary %>" alt="" height="200">
                                                 </td>
                                                 <td>
                                                     <%= report.isavailable ? " Bình thường" :"Bị chặn"%>
@@ -170,14 +170,14 @@
                                                         </p>
                                                     </button>
                                                     <% if(report.status){ %>
-                                                    <button type="button" class="btn bg-blue m-2"
-                                                        style="height: 40px; width: 110px;"
-                                                        onclick="confirmDeleteReport('<%= report._id %>')">
-                                                        <p class="d-none d-lg-inline-flex text-title">
-                                                            Xóa
-                                                        </p>
-                                                    </button>
-                                                    <% } %>
+                                                        <button type="button" class="btn bg-blue m-2"
+                                                            style="height: 40px; width: 110px;"
+                                                            onclick="confirmDeleteReport('<%= report._id %>')">
+                                                            <p class="d-none d-lg-inline-flex text-title">
+                                                                Xóa
+                                                            </p>
+                                                        </button>
+                                                        <% } %>
                                                 </td>
                                             </tr>
                                             <% }) %>
@@ -222,7 +222,7 @@
                     })
                 }
 
-                const confirmDeleteReport = (id) => {   
+                const confirmDeleteReport = (id) => {
                     Swal.fire({
                         title: "Bạn có chắc chắn muốn xóa báo cáo không?",
                         icon: "warning",
