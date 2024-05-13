@@ -84,4 +84,19 @@ router.get("/getFriendMoments", async (req, res, next) => {
   }
 });
 
+// lấy một khoảnh khắc
+// http://localhost:3000/api/moment/getAMoment?id=
+router.get("/getAMoment", async (req, res, next) => {
+  try {
+    const { id } = req.query;
+    const moments = await momentController.getAMomentController(id);
+    if (moments) {
+      return res.status(200).json({ result: true, moments: moments });
+    }
+    return res.status(500).json({ result: false, moments: null });
+  } catch (error) {
+    return res.status(400).json({ result: false, error: error.message });
+  }
+});
+
 module.exports = router;

@@ -21,7 +21,8 @@ const getMomentById = async (id) => {
   try {
     const moments = await momentModel.find({ userid: id }).exec();
     if (moments) {
-      return moments;
+      const sort = moments.sort((a, b) => b.createdat - a.createdat);
+      return sort;
     }
     return null;
   } catch (error) {
@@ -92,6 +93,9 @@ const getFriendsMoment = async (id) => {
           .exec();
         friendsMoments.push(...moment);
       }
+      const myMoments = await momentModel.find({ userid: id });
+      console.log(myMoments);
+      friendsMoments.push(...myMoments);
       const sortFriendsMoments = friendsMoments.sort(
         (a, b) => b.createdat - a.createdat
       );
@@ -104,10 +108,24 @@ const getFriendsMoment = async (id) => {
   }
 };
 
+// lấy một khoảnh khắc
+const getAMoment = async (id) => {
+  try {
+    const moments = await momentModel.findById(id);
+    if (moments) {
+      return moments;
+    }
+    return null;
+  } catch (error) {
+    console.log("get moment error: " + error.message);
+  }
+};
+
 module.exports = {
   getAllMoments,
   getMomentById,
   createMoment,
   deleteMoment,
   getFriendsMoment,
+  getAMoment,
 };
