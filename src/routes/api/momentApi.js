@@ -99,4 +99,18 @@ router.get("/getAMoment", async (req, res, next) => {
   }
 });
 
+// http://localhost:3000/api/moment/updateMoment
+router.post("/updateMoment", async (req, res, next) => {
+  try {
+    const { id, caption } = req.body;
+    const moment = await momentController.updateMoment(id, caption);
+    if (moment) {
+      return res.status(200).json({ result: true, moment: moment });
+    }
+    return res.status(500).json({ result: false, moment: null });
+  } catch (error) {
+    return res.status(400).json({ result: false, error: error.message });
+  }
+});
+
 module.exports = router;

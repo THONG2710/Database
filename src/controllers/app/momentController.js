@@ -50,7 +50,6 @@ const deleteMomentController = async (id) => {
   }
 };
 
-//  lấy khoảnh khắc của bạn bè
 const getFriendMomentsController = async (id) => {
   try {
     return await momentService.getFriendsMoment(id);
@@ -59,10 +58,17 @@ const getFriendMomentsController = async (id) => {
   }
 };
 
-// lấy một khoảnh khắc
 const getAMomentController = async (id) => {
   try {
     return await momentService.getAMoment(id);
+  } catch (error) {
+    return null;
+  }
+};
+
+const updateMoment = async (id, caption) => {
+  try {
+    return await momentService.updateMoment(id, caption);
   } catch (error) {
     return null;
   }
@@ -75,4 +81,5 @@ module.exports = {
   deleteMomentController,
   getFriendMomentsController,
   getAMomentController,
+  updateMoment
 };

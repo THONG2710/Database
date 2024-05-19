@@ -60,7 +60,6 @@ const createMoment = async (
   }
 };
 
-// xóa một khoảnh khắc
 const deleteMoment = async (id) => {
   try {
     const res = await momentModel.deleteOne({ _id: id });
@@ -108,7 +107,6 @@ const getFriendsMoment = async (id) => {
   }
 };
 
-// lấy một khoảnh khắc
 const getAMoment = async (id) => {
   try {
     const moments = await momentModel.findById(id);
@@ -121,6 +119,20 @@ const getAMoment = async (id) => {
   }
 };
 
+const updateMoment = async (id, caption) => {
+  try {
+    const moment = await momentModel.findById(id);
+    if (moment) {
+      moment.caption = caption ? caption : moment.caption;
+      await moment.save();
+      return moment;
+    }
+    return null;
+  } catch (error) {
+    console.log("failed to update moment: ", error.message);
+  }
+};
+
 module.exports = {
   getAllMoments,
   getMomentById,
@@ -128,4 +140,5 @@ module.exports = {
   deleteMoment,
   getFriendsMoment,
   getAMoment,
+  updateMoment,
 };
